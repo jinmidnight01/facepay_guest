@@ -1,0 +1,23 @@
+.footer {
+  margin: 40px 0 70px 0;
+  color: #999999;
+  display: flex;
+  justify-content: center;
+}
+
+.footer div:nth-child(1) {
+  margin-right: 30px;
+}
+
+.footerText {
+  font-size: 15px;
+}
+
+.footerLink{
+  text-decoration: none;
+  color: #999999;
+}
+
+.footerLink:active {
+  opacity: 0.8;
+} 

@@ -1,0 +1,96 @@
+.loadingBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 250px;
+}
+
+.loadingBox img {
+  width: 120px;
+}
+
+.logoBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 75px;
+}
+
+.tempLogo {
+  width: 130px;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 55px;
+}
+
+.inputBox {
+  width: 250px;
+  height: 45px;
+  margin-top: 26px;
+  padding-left: 20px;
+  border: 0.5px solid #d3d3d3;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.inputBox:focus {
+  border: 1px solid #FF5555;
+  outline:none;
+}
+
+.inputBox::placeholder {
+  font-size: 14px;
+}
+
+.signupBox {
+  font-size: 15px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 30px;
+}
+
+.signupLink{
+  text-decoration: none;
+  color: #999999;
+}
+
+.signupLink:active {
+  opacity: 0.8;
+}
+
+.buttonLink {
+  text-decoration: none;
+  cursor:default;
+}
+
+.buttonBox{
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  width: 280px;
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px;
+  cursor: pointer;
+  background-color: #FF5555;
+}
+
+.button:active {
+  opacity: 0.8;
+}
+
+.button:focus {
+  border: 2px solid red;
+  outline:none;
+}

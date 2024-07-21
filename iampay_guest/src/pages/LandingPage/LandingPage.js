@@ -1,0 +1,165 @@
+import { React, useState, useRef, useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "../../css/LandingPage.module.css";
+import Header from "../../components/Header";
+import tempLogo from "../../images/tempLogo.png";
+import Button from "../../components/Button";
+import { Link } from "react-router-dom";
+import Footer from "../../components/Footer";
+import rolling from "../../images/rolling.gif";
+import axios from "axios";
+import hostURL from "../../hostURL";
+
+const LandingPage = () => {
+  const navigator = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const refPhoneNumber = useRef();
+  const refPassword = useRef();
+  const refLoginButton = useRef();
+  const [inputs, setInputs] = useState({
+    phone_number: "",
+    password: "",
+  });
+  const onChange = (e) => {
+    const { value, name } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+  const { phone_number, password } = inputs;
+
+  // REST API: login
+  const login = (e) => {
+    // prevent page reset
+    e.preventDefault();
+
+    // loading
+    setIsLoading(true);
+
+    // 로그인 POST
+    axios
+      .post(`${hostURL}/api/users/log-in`, inputs)
+      .then((response) => {
+        // 로그인 성공
+        const token = response.data.access_token;
+        localStorage.setItem("accessToken", token);
+        navigator("/mypage", { state: inputs });
+      })
+      .catch((error) => {
+        // 등록된 유저가 아닌 경우
+        console.log(error);
+        setIsLoading(false);
+        alert("휴대폰 번호와 비밀번호를 확인해주세요");
+        return;
+      });
+
+    // 유저 정보 GET
+    const getToken = localStorage.getItem("accessToken");
+    if (getToken) {
+      axios
+        .get(`${hostURL}/api/users`, {
+          headers: {
+            Authorization: `Bearer ${getToken}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          navigator("/mypage", { state: response.data });
+        })
+        .catch((error) => {
+          console.log(error);
+          setIsLoading(false);
+        });
+    }
+  };
+
+  // input focus
+  const regPhoneNumber = useMemo(() => /^010[0-9]{8}$/, []);
+  const regPassword = useMemo(() => /^[0-9]{4}$/, []);
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      axios
+        .get(`${hostURL}/api/users`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          navigator("/mypage", { state: response.data });
+        });
+    }
+    refPhoneNumber.current.focus();
+  }, []);
+  useEffect(() => {
+    if (regPhoneNumber.test(phone_number)) {
+      refPassword.current.focus();
+    }
+  }, [phone_number, regPhoneNumber]);
+  useEffect(() => {
+    if (regPassword.test(password)) {
+      refLoginButton.current.focus();
+    }
+  }, [password, regPassword]);
+
+  return (
+    <div>
+      <Header logoLink="/" />
+      {isLoading ? (
+        <div className={styles.loadingBox}>
+          <img src={rolling} alt="로딩 중" />
+        </div>
+      ) : (
+        <div>
+          <div className={styles.logoBox}>
+            <img src={tempLogo} alt="tempLogo" className={styles.tempLogo} />
+          </div>
+          <form className={styles.loginForm}>
+            <input
+              name="phone_number"
+              onChange={onChange}
+              type="text"
+              inputMode="numeric"
+              ref={refPhoneNumber}
+              maxLength={11}
+              value={phone_number}
+              placeholder="휴대폰 번호"
+              className={styles.inputBox}
+            />
+            <input
+              name="password"
+              onChange={onChange}
+              type="password"
+              inputMode="numeric"
+              ref={refPassword}
+              maxLength={4}
+              value={password}
+              placeholder="비밀번호"
+              className={styles.inputBox}
+            />
+          </form>
+          <div className={styles.signupBox}>
+            <Link to={"/signup"} className={styles.signupLink}>
+              회원가입
+            </Link>
+          </div>
+          <Link to={"/mypage"} className={styles.buttonLink}>
+            <div className={styles.buttonBox}>
+              <button
+                ref={refLoginButton}
+                onClick={login}
+                className={styles.button}
+              >
+                로그인
+              </button>
+            </div>
+          </Link>
+          <Footer />
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default LandingPage;

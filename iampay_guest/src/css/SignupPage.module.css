@@ -1,0 +1,155 @@
+.loadingBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 250px;
+}
+
+.loadingBox img {
+  width: 120px;
+}
+
+.main {
+  display: block;
+}
+
+.logoBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 75px;
+}
+
+.tempLogo {
+  width: 130px;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 35px;
+
+}
+
+.inputBox {
+  width: 250px;
+  height: 45px;
+  margin-top: 20px;
+  padding-left: 20px;
+  border: 0.5px solid #d3d3d3;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.inputBox::placeholder {
+  font-size: 14px;
+}
+
+.inputBox:focus {
+  border: 1px solid #FF5555;
+  outline:none;
+}
+
+.cameraBox {
+  width: 270px;
+  background-color: #FFFFFF;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  border: 0.5px solid #d3d3d3;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.cameraBox div{
+  margin-left: 20px;
+  margin-top: 15px;
+  color:rgb(120, 119, 119);
+  font-size: 14px;
+}
+
+.camera {
+  width: 240px;
+  height: 320px;
+  cursor: pointer;
+  margin: 8px auto 12px auto;
+}
+
+.camera:active{
+  opacity: 0.8;
+}
+
+.modal {
+  display: none;
+  flex-direction: column;
+}
+
+.modalText {
+  text-align: center;
+  margin: 35px 0 30px 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.screenBox {
+  position: relative;
+  width: 300px;
+  margin: 0 auto 20px auto;
+}
+
+.faceGuide {
+  position:absolute;
+  width: 230px;
+  height: 230px;
+  z-index:100;
+  top: 85px;
+  left: 35px;
+  opacity: 0.5;
+}
+
+.screen {
+  display: flex;
+  justify-content: center;
+}
+
+.boundingBox {
+  width: relative;
+  height: relative;
+  position: relative;
+}
+
+.webcam {
+  margin-bottom: 20px;
+  width: 300px;
+  height: 400px;
+}
+
+.webcamBox {
+  background-color: rgb(168, 168, 168);
+  width: 300px;
+  height: 400px;
+}
+
+.butonBox{
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  width: 280px;
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px;
+  cursor: pointer;
+  background-color: #6e6e6e99;
+}
+
+.button:active {
+  opacity: 0.8;
+}
