@@ -13,14 +13,13 @@ import Footer from "../../components/Footer";
 import cameraThumbnail from "../../images/cameraThumbnail.png";
 import axios from "axios";
 import hostURL from "../../hostURL";
-import rolling from "../../images/rolling.gif";
+import Loading from "../../components/Loading";
 
 const SignupPage = () => {
   const navigator = useNavigate();
   const refPhoneNumber = useRef();
   const refPassword = useRef();
   const refUserName = useRef();
-  const [userData, setUserData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [inputs, setInputs] = useState({
     phone_number: "",
@@ -186,27 +185,22 @@ const SignupPage = () => {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((response) => {
-        console.log(response);
-        setUserData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-        setIsLoading(false);
-        return;
-      });
-
-    // log-in
-    axios
-      .post(`${hostURL}/api/users/log-in`, {
-        phone_number: phone_number,
-        password: password,
-      })
-      .then((response) => {
-        console.log(response);
-        console.log(userData)
-        const token = response.data.access_token;
-        localStorage.setItem("accessToken", token);
-        navigator("/mypage", { state: userData });
+        // log-in
+        const userData = response.data;
+        axios
+        .post(`${hostURL}/api/users/log-in`, {
+          phone_number: phone_number,
+          password: password,
+        })
+        .then((response) => {
+          const token = response.data.access_token;
+          localStorage.setItem("accessToken", token);
+          navigator("/mypage");
+        })
+        .catch((error) => {
+          console.log(error);
+          setIsLoading(false);
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -218,9 +212,7 @@ const SignupPage = () => {
     <div>
       <Header logoLink="/"  />
       {isLoading ? (
-        <div className={styles.loadingBox}>
-          <img src={rolling} alt="로딩 중" />
-        </div>
+        <Loading />
       ) : (
         <div>
           <div className={styles.main} id="main">

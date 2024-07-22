@@ -3,12 +3,11 @@ import { useNavigate } from "react-router-dom";
 import styles from "../../css/LandingPage.module.css";
 import Header from "../../components/Header";
 import tempLogo from "../../images/tempLogo.png";
-import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
-import rolling from "../../images/rolling.gif";
 import axios from "axios";
 import hostURL from "../../hostURL";
+import Loading from "../../components/Loading";
 
 const LandingPage = () => {
   const navigator = useNavigate();
@@ -44,34 +43,14 @@ const LandingPage = () => {
         // 로그인 성공
         const token = response.data.access_token;
         localStorage.setItem("accessToken", token);
-        navigator("/mypage", { state: inputs });
+        navigator("/mypage");
       })
       .catch((error) => {
         // 등록된 유저가 아닌 경우
         console.log(error);
         setIsLoading(false);
         alert("휴대폰 번호와 비밀번호를 확인해주세요");
-        return;
       });
-
-    // 유저 정보 GET
-    const getToken = localStorage.getItem("accessToken");
-    if (getToken) {
-      axios
-        .get(`${hostURL}/api/users`, {
-          headers: {
-            Authorization: `Bearer ${getToken}`,
-          },
-        })
-        .then((response) => {
-          console.log(response);
-          navigator("/mypage", { state: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-          setIsLoading(false);
-        });
-    }
   };
 
   // input focus
@@ -107,9 +86,7 @@ const LandingPage = () => {
     <div>
       <Header logoLink="/" />
       {isLoading ? (
-        <div className={styles.loadingBox}>
-          <img src={rolling} alt="로딩 중" />
-        </div>
+        <Loading />
       ) : (
         <div>
           <div className={styles.logoBox}>
