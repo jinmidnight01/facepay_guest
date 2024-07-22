@@ -1,5 +1,4 @@
 import { React, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
 import axios from "axios";
@@ -11,8 +10,6 @@ import Loading from "../../components/Loading";
 
 const MyPage = () => {
   const [isCharging, setIsCharging] = useState(false);
-  const [buttonText, setButtonText] = useState("충전하기");
-  const [buttonLink, setButtonLink] = useState("/mypage/charge");
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState({});
 
@@ -96,9 +93,9 @@ const MyPage = () => {
 
           {!isCharging && (
             <Button
-              buttonLink={buttonLink}
+              buttonLink="/mypage/charge"
               buttonColor="#FF5555"
-              buttonText={buttonText}
+              buttonText="충전하기"
             />
           )}
         </div>
