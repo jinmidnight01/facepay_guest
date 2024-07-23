@@ -186,7 +186,6 @@ const SignupPage = () => {
       })
       .then((response) => {
         // log-in
-        const userData = response.data;
         axios
         .post(`${hostURL}/api/users/log-in`, {
           phone_number: phone_number,

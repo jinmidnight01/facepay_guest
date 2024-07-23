@@ -1,4 +1,5 @@
 import { React, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
 import axios from "axios";
@@ -12,6 +13,7 @@ const MyPage = () => {
   const [isCharging, setIsCharging] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState({});
+  const navigator = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -32,6 +34,7 @@ const MyPage = () => {
       })
       .catch((error) => {
         console.log(error);
+        navigator("/");
       });
   }, []);
 
