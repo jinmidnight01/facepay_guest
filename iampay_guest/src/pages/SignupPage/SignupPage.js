@@ -37,11 +37,11 @@ const SignupPage = () => {
 
   // 웹캠 설정
   const [user_face_img, setUserFaceImg] = useState(cameraLogo);
-  const width = 1500;
-  const height = 2000;
+  const width = 1280;
+  const height = 720;
   const videoConstraints = {
-    width: width,
-    height: height,
+    // width: "1500",
+    // height: "2000",
     facingMode: "user",
   };
   const { webcamRef, boundingBox, facesDetected } = useFaceDetection({
@@ -323,7 +323,7 @@ const SignupPage = () => {
                     <div
                       key={`${index}`}
                       style={{
-                        border: "0px solid #FF5555",
+                        border: "3px solid #FF5555",
                         borderRadius: "50%",
                         position: "absolute",
                         top: `${box.yCenter * 100}%`,
@@ -342,32 +342,31 @@ const SignupPage = () => {
                   ))}
 
                   <div className={styles.webcamBox}>
-                  <Webcam
-                    ref={webcamRef}
-                    videoConstraints={videoConstraints}
-                    forceScreenshotSourceSize
-                    screenshotFormat="image/jpeg"
-                    mirrored={true}
-                    width="300px"
-                    height="300px"
-                    className={styles.webcam}
-                  >
-                    {({ getScreenshot }) => (
-                      <div className={styles.buttonBox}>
-                        <Button
-                          onClick={() => {
-                            const image_Src = getScreenshot();
-                            setUserFaceImg(image_Src);
-                            handleModal();
-                          }}
-                          id="button"
-                          buttonColor="#6e6e6e99"
-                          buttonText="촬영"
-                        />
-                      </div>
-                    )}
-                  </Webcam>
-
+                    <Webcam
+                      ref={webcamRef}
+                      videoConstraints={videoConstraints}
+                      forceScreenshotSourceSize
+                      screenshotFormat="image/jpeg"
+                      mirrored={true}
+                      width="300px"
+                      // height="400px"
+                      className={styles.webcam}
+                    >
+                      {({ getScreenshot }) => (
+                        <div className={styles.buttonBox}>
+                          <Button
+                            onClick={() => {
+                              const image_Src = getScreenshot();
+                              setUserFaceImg(image_Src);
+                              handleModal();
+                            }}
+                            id="button"
+                            buttonColor="#6e6e6e99"
+                            buttonText="촬영"
+                          />
+                        </div>
+                      )}
+                    </Webcam>
                   </div>
                 </div>
               </div>

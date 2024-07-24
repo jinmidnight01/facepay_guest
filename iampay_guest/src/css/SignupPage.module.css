@@ -112,12 +112,12 @@
 
 .webcamBox {
   width: 300px;
-  height: 300px;
+  /* height: 400px; */
 }
 
 .webcam {
   width: 300px;
-  height: 300px;
+  /* height: 400px; */
 }
 
 .buttonBox{
