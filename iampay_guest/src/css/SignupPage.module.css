@@ -62,7 +62,7 @@
 
 .camera {
   width: 240px;
-  height: 320px;
+  height: 240px;
   cursor: pointer;
   margin: 8px auto 12px auto;
 }
@@ -94,7 +94,7 @@
   width: 230px;
   height: 230px;
   z-index:100;
-  top: 85px;
+  top: 35px;
   left: 35px;
   opacity: 0.5;
 }
@@ -110,36 +110,8 @@
   position: relative;
 }
 
-.webcam {
-  margin-bottom: 20px;
-  width: 300px;
-  height: 400px;
-}
-
-.webcamBox {
-  background-color: rgb(168, 168, 168);
-  width: 300px;
-  height: 400px;
-}
-
-.butonBox{
+.buttonBox{
   display: flex;
   justify-content: center;
-}
-
-.button {
-  width: 280px;
-  height: 45px;
-  border: none;
-  border-radius: 10px;
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: bold;
-  margin: 10px;
-  cursor: pointer;
-  background-color: #6e6e6e99;
-}
-
-.button:active {
-  opacity: 0.8;
+  margin-top: 20px;
 }

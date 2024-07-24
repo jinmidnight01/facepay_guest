@@ -10,26 +10,38 @@ import FaceDetection from "@mediapipe/face_detection";
 import { Camera } from "@mediapipe/camera_utils";
 import faceGuide from "../../images/faceGuide.png";
 import Footer from "../../components/Footer";
-import cameraThumbnail from "../../images/cameraThumbnail.png";
+import cameraLogo from "../../images/cameraLogo.png";
 import axios from "axios";
 import hostURL from "../../hostURL";
 import Loading from "../../components/Loading";
 
 const SignupPage = () => {
   const navigator = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const refPhoneNumber = useRef();
   const refPassword = useRef();
   const refUserName = useRef();
-  const [isLoading, setIsLoading] = useState(false);
   const [inputs, setInputs] = useState({
     phone_number: "",
     password: "",
     username: "",
   });
-  const [user_face_img, setUserFaceImg] = useState(cameraThumbnail);
+  const onChange = (e) => {
+    const { value, name } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+  const { phone_number, password, username } = inputs;
+
+  // 웹캠 설정
+  const [user_face_img, setUserFaceImg] = useState(cameraLogo);
+  const width = 1500;
+  const height = 2000;
   const videoConstraints = {
-    width: "1500",
-    height: "2000",
+    width: width,
+    height: height,
     facingMode: "user",
   };
   const { webcamRef, boundingBox, facesDetected } = useFaceDetection({
@@ -43,28 +55,22 @@ const SignupPage = () => {
     camera: ({ mediaSrc, onFrame }) =>
       new Camera(mediaSrc, {
         onFrame,
+        width,
+        height,
       }),
   });
-  const onChange = (e) => {
-    const { value, name } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  };
-  const { phone_number, password, username } = inputs;
 
-  // color change(top: 37~44, right: 24~33, width: 35~45, height: 28~35)
+  // 얼굴 초점 위치(top: 37~44, right: 24~33, width: 35~45, height: 28~35)
   const handleChange = (yCenter, xCenter, width, height) => {
     if (
-      yCenter >= 0.37 &&
-      yCenter <= 0.44 &&
-      xCenter >= 0.24 &&
-      xCenter <= 0.33 &&
-      width >= 0.35 &&
+      yCenter >= 0.35 &&
+      yCenter <= 0.45 &&
+      xCenter >= 0.20 &&
+      xCenter <= 0.40 &&
+      width >= 0.40 &&
       width <= 0.45 &&
-      height >= 0.28 &&
-      height <= 0.35 &&
+      height >= 0.40 &&
+      height <= 0.50 &&
       facesDetected === 1
     ) {
       document.getElementById("faceGuide").style.opacity = 1;
@@ -77,7 +83,7 @@ const SignupPage = () => {
     }
   };
 
-  // Modal control: display
+  // 얼굴 사진 등록 화면 전환
   const handleModal = () => {
     if (
       document.getElementById("main").style.display === "" ||
@@ -91,23 +97,24 @@ const SignupPage = () => {
     document.getElementById("modal").style.display = "none";
   };
 
-  // input focus
-  const regPhoneNumber = useMemo(() => /^010[0-9]{8}$/, []);
-  const regPassword = useMemo(() => /^[0-9]{4}$/, []);
-  const regUserName = useMemo(() => /^[가-힣]{2,4}$/, []);
-  useEffect(() => {
-    refPhoneNumber.current.focus();
-  }, []);
-  useEffect(() => {
-    if (regPhoneNumber.test(phone_number)) {
-      refPassword.current.focus();
-    }
-  }, [phone_number, regPhoneNumber]);
-  useEffect(() => {
-    if (regPassword.test(password)) {
-      refUserName.current.focus();
-    }
-  }, [password, regPassword]);
+  // 좌우 반전 함수
+  const mirrorImage = (imageSrc, callback) => {
+    const img = new Image();
+    img.src = imageSrc;
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      // 좌우 반전
+      ctx.translate(canvas.width, 0);
+      ctx.scale(-1, 1);
+      ctx.drawImage(img, 0, 0);
+
+      canvas.toBlob(callback, "image/jpeg");
+    };
+  };
 
   // REST API: post user data
   const handleSubmit = async (e) => {
@@ -119,7 +126,7 @@ const SignupPage = () => {
     e.preventDefault();
 
     // input validation
-    if (user_face_img === cameraThumbnail) {
+    if (user_face_img === cameraLogo) {
       alert("얼굴 사진을 등록해주세요");
       return;
     }
@@ -171,45 +178,69 @@ const SignupPage = () => {
     setIsLoading(true);
 
     // create form data
-    const formData = new FormData();
     const response = await fetch(user_face_img);
     const blob = await response.blob();
-    formData.append("user_face_img", blob);
-    formData.append("phone_number", phone_number);
-    formData.append("password", password);
-    formData.append("username", username);
+    const reader = new FileReader();
+    reader.readAsDataURL(blob);
+    reader.onloadend = () => {
+      mirrorImage(reader.result, async (mirroredBlob) => {
+        const formData = new FormData();
+        formData.append("user_face_img", mirroredBlob);
+        formData.append("phone_number", phone_number);
+        formData.append("password", password);
+        formData.append("username", username);
 
-    // Sign up user data
-    axios
-      .post(`${hostURL}/api/users/sign-up`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then((response) => {
-        // log-in
+        // Sign up user data
         axios
-        .post(`${hostURL}/api/users/log-in`, {
-          phone_number: phone_number,
-          password: password,
-        })
-        .then((response) => {
-          const token = response.data.access_token;
-          localStorage.setItem("accessToken", token);
-          navigator("/mypage");
-        })
-        .catch((error) => {
-          console.log(error);
-          setIsLoading(false);
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-        setIsLoading(false);
+          .post(`${hostURL}/api/users/sign-up`, formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+          })
+          .then(() => {
+            // log-in
+            axios
+              .post(`${hostURL}/api/users/log-in`, {
+                phone_number: phone_number,
+                password: password,
+              })
+              .then((response) => {
+                const token = response.data.access_token;
+                localStorage.setItem("accessToken", token);
+                navigator("/mypage");
+              })
+              .catch((error) => {
+                console.log(error);
+                setIsLoading(false);
+              });
+          })
+          .catch((error) => {
+            console.log(error);
+            setIsLoading(false);
+          });
       });
+    };
   };
+
+  // input focus
+  const regPhoneNumber = useMemo(() => /^010[0-9]{8}$/, []);
+  const regPassword = useMemo(() => /^[0-9]{4}$/, []);
+  const regUserName = useMemo(() => /^[가-힣]{2,4}$/, []);
+  useEffect(() => {
+    refPhoneNumber.current.focus();
+  }, []);
+  useEffect(() => {
+    if (regPhoneNumber.test(phone_number)) {
+      refPassword.current.focus();
+    }
+  }, [phone_number, regPhoneNumber]);
+  useEffect(() => {
+    if (regPassword.test(password)) {
+      refUserName.current.focus();
+    }
+  }, [password, regPassword]);
 
   return (
     <div>
-      <Header logoLink="/"  />
+      <Header logoLink="/" />
       {isLoading ? (
         <Loading />
       ) : (
@@ -285,6 +316,7 @@ const SignupPage = () => {
                 className={styles.faceGuide}
                 id="faceGuide"
               />
+
               <div className={styles.screen}>
                 <div className={styles.boundingBox}>
                   {boundingBox.map((box, index) => (
@@ -308,31 +340,30 @@ const SignupPage = () => {
                       )}
                     />
                   ))}
-                  <div className={styles.webcamBox}>
-                    <Webcam
-                      ref={webcamRef}
-                      videoConstraints={videoConstraints}
-                      mirrored={true}
-                      width="300px"
-                      height="400px"
-                      className={styles.webcam}
-                    >
-                      {({ getScreenshot }) => (
-                        <div className={styles.buttonBox}>
-                          <Button
-                            onClick={() => {
-                              const imageSrc = getScreenshot();
-                              setUserFaceImg(imageSrc);
-                              handleModal();
-                            }}
-                            id="button"
-                            buttonColor="#6e6e6e99"
-                            buttonText="촬영"
-                          />
-                        </div>
-                      )}
-                    </Webcam>
-                  </div>
+
+                  <Webcam
+                    ref={webcamRef}
+                    videoConstraints={videoConstraints}
+                    forceScreenshotSourceSize
+                    screenshotFormat="image/jpeg"
+                    mirrored={true}
+                    width="300px"
+                  >
+                    {({ getScreenshot }) => (
+                      <div className={styles.buttonBox}>
+                        <Button
+                          onClick={() => {
+                            const image_Src = getScreenshot();
+                            setUserFaceImg(image_Src);
+                            handleModal();
+                          }}
+                          id="button"
+                          buttonColor="#6e6e6e99"
+                          buttonText="촬영"
+                        />
+                      </div>
+                    )}
+                  </Webcam>
                 </div>
               </div>
             </div>
