@@ -37,8 +37,8 @@ const SignupPage = () => {
 
   // 웹캠 설정
   const [user_face_img, setUserFaceImg] = useState(cameraLogo);
-  const width = 1280;
-  const height = 720;
+  const width = 300;
+  const height = 400;
   const videoConstraints = {
     // width: "1500",
     // height: "2000",
@@ -66,11 +66,11 @@ const SignupPage = () => {
       yCenter >= 0.35 &&
       yCenter <= 0.45 &&
       xCenter >= 0.20 &&
-      xCenter <= 0.40 &&
+      xCenter <= 0.30 &&
       width >= 0.40 &&
-      width <= 0.45 &&
-      height >= 0.40 &&
-      height <= 0.50 &&
+      width <= 0.50 &&
+      height >= 0.30 &&
+      height <= 0.40 &&
       facesDetected === 1
     ) {
       document.getElementById("faceGuide").style.opacity = 1;
