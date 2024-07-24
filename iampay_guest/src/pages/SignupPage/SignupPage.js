@@ -341,6 +341,7 @@ const SignupPage = () => {
                     />
                   ))}
 
+                  <div className={styles.webcamBox}>
                   <Webcam
                     ref={webcamRef}
                     videoConstraints={videoConstraints}
@@ -349,6 +350,7 @@ const SignupPage = () => {
                     mirrored={true}
                     width="300px"
                     height="300px"
+                    className={styles.webcam}
                   >
                     {({ getScreenshot }) => (
                       <div className={styles.buttonBox}>
@@ -365,6 +367,8 @@ const SignupPage = () => {
                       </div>
                     )}
                   </Webcam>
+
+                  </div>
                 </div>
               </div>
             </div>

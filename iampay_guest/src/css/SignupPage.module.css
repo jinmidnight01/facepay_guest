@@ -110,6 +110,16 @@
   position: relative;
 }
 
+.webcamBox {
+  width: 300px;
+  height: 300px;
+}
+
+.webcam {
+  width: 300px;
+  height: 300px;
+}
+
 .buttonBox{
   display: flex;
   justify-content: center;
