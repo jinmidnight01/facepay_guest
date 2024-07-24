@@ -91,11 +91,11 @@
 
 .faceGuide {
   position:absolute;
-  width: 250px;
-  height: 250px;
+  width: 150px;
+  height: 150px;
   z-index:100;
-  top: 75px;
-  left: 25px;
+  top: 25px;
+  left: 75px;
   opacity: 0.5;
 }
 
@@ -112,12 +112,12 @@
 
 .webcamBox {
   width: 300px;
-  height: 400px;
+  height: 200px;
 }
 
 .webcam {
   width: 300px;
-  height: 400px;
+  height: 200px;
 }
 
 .buttonBox{
