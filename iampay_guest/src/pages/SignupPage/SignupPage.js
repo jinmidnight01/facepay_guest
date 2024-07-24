@@ -348,6 +348,7 @@ const SignupPage = () => {
                     screenshotFormat="image/jpeg"
                     mirrored={true}
                     width="300px"
+                    height="300px"
                   >
                     {({ getScreenshot }) => (
                       <div className={styles.buttonBox}>
