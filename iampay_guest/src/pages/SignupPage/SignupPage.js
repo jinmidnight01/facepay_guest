@@ -349,7 +349,7 @@ const SignupPage = () => {
                       screenshotFormat="image/jpeg"
                       mirrored={true}
                       width="300px"
-                      // height="400px"
+                      height="400px"
                       className={styles.webcam}
                     >
                       {({ getScreenshot }) => (
