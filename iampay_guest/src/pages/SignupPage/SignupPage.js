@@ -67,10 +67,10 @@ const SignupPage = () => {
       yCenter <= 0.45 &&
       xCenter >= 0.25 &&
       xCenter <= 0.35 &&
-      width >= 0.35 &&
-      width <= 0.40 &&
-      height >= 0.30 &&
-      height <= 0.40 &&
+      width >= 0.40 &&
+      width <= 0.50 &&
+      height >= 0.40 &&
+      height <= 0.50 &&
       facesDetected === 1
     ) {
       document.getElementById("faceGuide").style.opacity = 1;
@@ -323,7 +323,7 @@ const SignupPage = () => {
                     <div
                       key={`${index}`}
                       style={{
-                        border: "3px solid #FF5555",
+                        border: "0px solid #FF5555",
                         borderRadius: "50%",
                         position: "absolute",
                         top: `${box.yCenter * 100}%`,
