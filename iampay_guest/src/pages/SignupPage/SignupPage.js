@@ -37,7 +37,7 @@ const SignupPage = () => {
 
   // 웹캠 설정
   const [user_face_img, setUserFaceImg] = useState(cameraLogo);
-  const [permissionsGranted, setPermissionsGranted] = useState(false);
+  const [permissionsGranted, setPermissionsGranted] = useState(true);
   const [error, setError] = useState(null);
   const width = 300;
   const height = 300;
