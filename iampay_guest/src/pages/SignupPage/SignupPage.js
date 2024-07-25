@@ -16,7 +16,7 @@ import hostURL from "../../hostURL";
 import Loading from "../../components/Loading";
 
 const SignupPage = () => {
-  const navigator = useNavigate();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const refPhoneNumber = useRef();
   const refPassword = useRef();
@@ -37,6 +37,8 @@ const SignupPage = () => {
 
   // 웹캠 설정
   const [user_face_img, setUserFaceImg] = useState(cameraLogo);
+  const [permissionsGranted, setPermissionsGranted] = useState(false);
+  const [error, setError] = useState(null);
   const width = 300;
   const height = 300;
   const videoConstraints = {
@@ -205,7 +207,7 @@ const SignupPage = () => {
               .then((response) => {
                 const token = response.data.access_token;
                 localStorage.setItem("accessToken", token);
-                navigator("/mypage");
+                navigate("/mypage");
               })
               .catch((error) => {
                 console.log(error);
@@ -225,6 +227,25 @@ const SignupPage = () => {
   const regPassword = useMemo(() => /^[0-9]{4}$/, []);
   const regUserName = useMemo(() => /^[가-힣]{2,4}$/, []);
   useEffect(() => {
+    const checkPermissions = async () => {
+      const storedPermission = localStorage.getItem('cameraPermission');
+      if (storedPermission === 'granted') {
+        setPermissionsGranted(true);
+      } else {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+          if (stream) {
+            setPermissionsGranted(true);
+            localStorage.setItem('cameraPermission', 'granted');
+          }
+        } catch (err) {
+          setError('Camera access denied');
+          localStorage.setItem('cameraPermission', 'denied');
+        }
+      }
+    };
+
+    checkPermissions();
     refPhoneNumber.current.focus();
   }, []);
   useEffect(() => {
@@ -342,6 +363,7 @@ const SignupPage = () => {
                   ))}
 
                   <div className={styles.webcamBox}>
+                    {permissionsGranted &&
                     <Webcam
                       ref={webcamRef}
                       videoConstraints={videoConstraints}
@@ -366,7 +388,7 @@ const SignupPage = () => {
                           />
                         </div>
                       )}
-                    </Webcam>
+                    </Webcam>}
                   </div>
                 </div>
               </div>
