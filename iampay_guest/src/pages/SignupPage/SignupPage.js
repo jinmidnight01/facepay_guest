@@ -42,8 +42,8 @@ const SignupPage = () => {
   const width = 300;
   const height = 300;
   const videoConstraints = {
-    // width: "1500",
-    // height: "2000",
+    width: 300,
+    height: 300,
     facingMode: "user",
   };
   const { webcamRef, boundingBox, facesDetected } = useFaceDetection({
@@ -259,6 +259,36 @@ const SignupPage = () => {
     }
   }, [password, regPassword]);
 
+  const test = () => {
+    return (
+      <Webcam
+      ref={webcamRef}
+      videoConstraints={videoConstraints}
+      forceScreenshotSourceSize
+      screenshotFormat="image/jpeg"
+      mirrored={true}
+      width="300px"
+      height="300px"
+      className={styles.webcam}
+    >
+      {({ getScreenshot }) => (
+        <div className={styles.buttonBox}>
+          <Button
+            onClick={() => {
+              const image_Src = getScreenshot();
+              setUserFaceImg(image_Src);
+              handleModal();
+            }}
+            id="button"
+            buttonColor="#6e6e6e99"
+            buttonText="촬영"
+          />
+        </div>
+      )}
+    </Webcam>
+    );
+  }
+
   return (
     <div>
       <Header logoLink="/" />
@@ -344,7 +374,7 @@ const SignupPage = () => {
                     <div
                       key={`${index}`}
                       style={{
-                        border: "0px solid #FF5555",
+                        border: "3px solid #FF5555",
                         borderRadius: "50%",
                         position: "absolute",
                         top: `${box.yCenter * 100}%`,
