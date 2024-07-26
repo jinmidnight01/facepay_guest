@@ -72,6 +72,7 @@ const LandingPage = () => {
           console.log(error);
           localStorage.removeItem("accessToken");
           navigator("/");
+          setIsLoading(false);
         });
     }
     else {
