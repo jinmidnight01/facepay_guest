@@ -43,7 +43,7 @@ const MyPage = () => {
     <div>
       <Header logoLink="/mypage" />
 
-      {isLoading ? (
+      {true ? (
         <Loading />
       ) : (
         <div className={styles.main}>
