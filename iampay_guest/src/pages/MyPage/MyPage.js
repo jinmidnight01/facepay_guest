@@ -57,17 +57,17 @@ const MyPage = () => {
                 {Number(userData.charging_money).toLocaleString()}원
               </div>
               <div className={styles.paymentWaitingDetail}>
-                <span><span className={styles.boldText}>• 예금주</span>: 레빌스</span>
+                <span><span className={styles.boldText}>• 예금주</span>: 박찬솔</span>
                 <br />
                 <span>
                   <span className={styles.boldText}>• 계좌번호</span>:{" "}
                   <CopyToClipboard
-                    text="100037074410"
+                    text="100134023653"
                     onCopy={() => alert("계좌가 복사되었습니다")}
                   >
                     <span>
                       <span className={styles.accountInfo}>
-                        신한은행 100037074410
+                        토스뱅크 100134023653
                       </span>
                       <img
                         src={copyText}
