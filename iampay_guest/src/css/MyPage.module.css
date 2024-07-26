@@ -1,7 +1,7 @@
 .welcomeText {
   font-size: 23px;
   font-weight: bold;
-  margin-top: 75px;
+  margin-top: 70px;
   text-align: center;
 }
 
@@ -64,7 +64,7 @@
 .balanceBox {
   background-color: #FFFFFF;
   width: 300px;
-  margin: 45px auto 55px auto;
+  margin: 45px auto 30px auto;
   border-radius: 10px;
 }
 
