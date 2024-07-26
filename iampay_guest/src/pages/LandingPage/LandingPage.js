@@ -72,7 +72,6 @@ const LandingPage = () => {
           console.log(error);
           localStorage.removeItem("accessToken");
           navigator("/");
-          setIsLoading(false);
         });
     }
     else {
@@ -93,7 +92,7 @@ const LandingPage = () => {
   return (
     <div>
       <Header logoLink="/" />
-      {true ? (
+      {isLoading ? (
         <Loading />
       ) : (
         <div>
