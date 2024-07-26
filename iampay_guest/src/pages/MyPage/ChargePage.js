@@ -15,6 +15,23 @@ const ChargePage = () => {
   const navigator = useNavigate();
 
   useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    axios
+      .get(`${hostURL}/api/users`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        if (response.data.charging_money > 0) {
+          navigator("/mypage");
+          return;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        navigator("/");
+      });
     chargeRef.current.focus();
   }, []);
 
