@@ -67,6 +67,11 @@ const LandingPage = () => {
         })
         .then((response) => {
           navigator("/mypage", { state: response.data });
+        })
+        .catch((error) => {
+          console.log(error);
+          localStorage.removeItem("accessToken");
+          navigator("/");
         });
     }
     else {
@@ -87,7 +92,7 @@ const LandingPage = () => {
   return (
     <div>
       <Header logoLink="/" />
-      {isLoading ? (
+      {true ? (
         <Loading />
       ) : (
         <div>
