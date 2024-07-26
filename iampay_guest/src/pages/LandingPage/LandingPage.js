@@ -57,6 +57,7 @@ const LandingPage = () => {
   const regPhoneNumber = useMemo(() => /^010[0-9]{8}$/, []);
   const regPassword = useMemo(() => /^[0-9]{4}$/, []);
   useEffect(() => {
+    setIsLoading(true);
     const token = localStorage.getItem("accessToken");
     if (token) {
       axios
@@ -69,6 +70,7 @@ const LandingPage = () => {
           navigator("/mypage", { state: response.data });
         });
     }
+    setIsLoading(false);
     refPhoneNumber.current.focus();
   }, []);
   useEffect(() => {
