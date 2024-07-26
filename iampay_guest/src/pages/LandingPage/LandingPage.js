@@ -69,7 +69,9 @@ const LandingPage = () => {
           navigator("/mypage", { state: response.data });
         });
     }
-    setIsLoading(false);
+    else {
+      setIsLoading(false);
+    }
   }, []);
   useEffect(() => {
     if (regPhoneNumber.test(phone_number)) {
