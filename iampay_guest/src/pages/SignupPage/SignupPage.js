@@ -240,8 +240,6 @@ const SignupPage = () => {
                 buttonText="완료"
               />
             </form>
-
-            <Footer />
           </div>
 
           <div className={styles.modal} id="modal">
@@ -312,6 +310,7 @@ const SignupPage = () => {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 };

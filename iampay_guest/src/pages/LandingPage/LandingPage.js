@@ -139,9 +139,9 @@ const LandingPage = () => {
               </button>
             </div>
           </Link>
-          <Footer />
         </div>
       )}
+      <Footer />
     </div>
   );
 };
