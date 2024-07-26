@@ -165,7 +165,6 @@ const SignupPage = () => {
   const regUserName = useMemo(() => /^[가-힣]{2,4}$/, []);
   useEffect(() => {
     CheckPermission(setPermissionsGranted);
-    refPhoneNumber.current.focus();
   }, []);
   useEffect(() => {
     if (regPhoneNumber.test(phone_number)) {

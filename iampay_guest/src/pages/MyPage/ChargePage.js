@@ -40,12 +40,17 @@ const ChargePage = () => {
 
     // 충전 금액 PATCH
     axios
-      .patch(`${hostURL}/api/users/charging`,{
-        "charging_money": charging_money.replaceAll(",", "")
-        }, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        }})
+      .patch(
+        `${hostURL}/api/users/charging`,
+        {
+          charging_money: charging_money.replaceAll(",", ""),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
       .then(() => {
         navigator("/mypage");
       })
@@ -67,16 +72,18 @@ const ChargePage = () => {
 
           <div className={styles.chargeBox}>
             <div className={styles.chargeText}>금액</div>
-            {/* <div className={styles.chargeNumber}>10,000 원</div> */}
             <div className={styles.wonText}>원</div>
-            <input type="text" value={charging_money} onChange={onChange} ref={chargeRef} className={styles.chargeInput}/>
+            <input
+              type="text"
+              inputMode="numeric"
+              value={charging_money}
+              onChange={onChange}
+              ref={chargeRef}
+              className={styles.chargeInput}
+            />
           </div>
 
-          <Button
-            onClick={onClick}
-            buttonColor="#FF5555"
-            buttonText="완료"
-          />
+          <Button onClick={onClick} buttonColor="#FF5555" buttonText="완료" />
         </div>
       )}
     </div>

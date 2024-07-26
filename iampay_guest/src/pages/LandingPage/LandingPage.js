@@ -70,7 +70,6 @@ const LandingPage = () => {
         });
     }
     setIsLoading(false);
-    refPhoneNumber.current.focus();
   }, []);
   useEffect(() => {
     if (regPhoneNumber.test(phone_number)) {
