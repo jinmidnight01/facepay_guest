@@ -6,6 +6,7 @@ import Button from "../../components/Button";
 import axios from "axios";
 import hostURL from "../../hostURL";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 const ChargePage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -86,6 +87,8 @@ const ChargePage = () => {
           <Button onClick={onClick} buttonColor="#FF5555" buttonText="완료" />
         </div>
       )}
+
+      <Footer />
     </div>
   );
 };

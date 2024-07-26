@@ -8,6 +8,7 @@ import styles from "../../css/MyPage.module.css";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import copyText from "../../images/copyText.png";
 import Loading from "../../components/Loading";
+import Footer from "../../components/Footer";
 
 const MyPage = () => {
   const [isCharging, setIsCharging] = useState(false);
@@ -103,6 +104,8 @@ const MyPage = () => {
           )}
         </div>
       )}
+
+      <Footer />
     </div>
   );
 };
