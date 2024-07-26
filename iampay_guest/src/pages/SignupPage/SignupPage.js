@@ -42,7 +42,6 @@ const SignupPage = () => {
   // 웹캠 설정
   const [user_face_img, setUserFaceImg] = useState(cameraLogo);
   const [permissionsGranted, setPermissionsGranted] = useState(false);
-  const [isFaceRegistering, setIsFaceRegistering] = useState(false);
   const width = 300;
   const height = 300;
   const videoConstraints = {
@@ -50,44 +49,44 @@ const SignupPage = () => {
     height: 300,
     facingMode: "user",
   };
-  const { webcamRef, boundingBox, facesDetected } = useFaceDetection({
+  const { webcamRef, boundingBox } = useFaceDetection({
     faceDetectionOptions: {
       model: "short",
     },
     faceDetection: new FaceDetection.FaceDetection({
       locateFile: (file) =>
         `https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/${file}`,
-    }, [isFaceRegistering]),
+    }),
     camera: ({ mediaSrc, onFrame }) =>
       new Camera(mediaSrc, {
         onFrame,
         width,
         height,
-      },[isFaceRegistering]),
-  }, [isFaceRegistering]); 
+      }),
+  }); 
 
   // 얼굴 초점 위치에 따른 버튼 활성화
-  const handleChange = (yCenter, xCenter, width, height) => {
-    if (
-      yCenter >= 0.35 &&
-      yCenter <= 0.45 &&
-      xCenter >= 0.25 &&
-      xCenter <= 0.35 &&
-      width >= 0.40 &&
-      width <= 0.50 &&
-      height >= 0.40 &&
-      height <= 0.50 &&
-      facesDetected === 1
-    ) {
-      document.getElementById("faceGuide").style.opacity = 1;
-      document.getElementById("button").style.backgroundColor = "#FF5555";
-      document.getElementById("button").removeAttribute("disabled");
-    } else {
-      document.getElementById("faceGuide").style.opacity = 0.5;
-      document.getElementById("button").style.backgroundColor = "#6e6e6e99";
-      document.getElementById("button").setAttribute("disabled", "disabled");
-    }
-  };
+  // const handleChange = (yCenter, xCenter, width, height) => {
+  //   if (
+  //     yCenter >= 0.35 &&
+  //     yCenter <= 0.45 &&
+  //     xCenter >= 0.25 &&
+  //     xCenter <= 0.35 &&
+  //     width >= 0.40 &&
+  //     width <= 0.50 &&
+  //     height >= 0.40 &&
+  //     height <= 0.50 &&
+  //     facesDetected === 1
+  //   ) {
+  //     document.getElementById("faceGuide").style.opacity = 1;
+  //     document.getElementById("button").style.backgroundColor = "#FF5555";
+  //     document.getElementById("button").removeAttribute("disabled");
+  //   } else {
+  //     document.getElementById("faceGuide").style.opacity = 0.5;
+  //     document.getElementById("button").style.backgroundColor = "#6e6e6e99";
+  //     document.getElementById("button").setAttribute("disabled", "disabled");
+  //   }
+  // };
 
   // 얼굴 사진 등록 화면 전환
   const handleModal = () => {
@@ -97,12 +96,10 @@ const SignupPage = () => {
     ) {
       document.getElementById("main").style.display = "none";
       document.getElementById("modal").style.display = "flex";
-      setIsFaceRegistering(true);
       return;
     }
     document.getElementById("main").style.display = "block";
     document.getElementById("modal").style.display = "none";
-    setIsFaceRegistering(false);
   };
 
   // REST API: post user data
@@ -248,7 +245,7 @@ const SignupPage = () => {
           </div>
 
           <div className={styles.modal} id="modal">
-            <div className={styles.modalText}>얼굴을 정면에 고정 해주세요</div>
+            <div className={styles.modalText}>얼굴을 박스에 고정 후 촬영해주세요</div>
             <div className={styles.screenBox}>
               <img
                 src={faceGuide}
@@ -263,7 +260,7 @@ const SignupPage = () => {
                     <div
                       key={`${index}`}
                       style={{
-                        border: "3px solid #FF5555",
+                        border: "0px solid #FF5555",
                         borderRadius: "50%",
                         position: "absolute",
                         top: `${box.yCenter * 100}%`,
@@ -272,12 +269,12 @@ const SignupPage = () => {
                         height: `${box.height * 100}%`,
                         zIndex: 1,
                       }}
-                      onChange={handleChange(
-                        box.yCenter,
-                        box.xCenter,
-                        box.width,
-                        box.height
-                      )}
+                      // onChange={handleChange(
+                      //   box.yCenter,
+                      //   box.xCenter,
+                      //   box.width,
+                      //   box.height
+                      // )}
                     />
                   ))}
 
@@ -302,7 +299,7 @@ const SignupPage = () => {
                               handleModal();
                             }}
                             id="button"
-                            buttonColor="#6e6e6e99"
+                            buttonColor="#FF5555"
                             buttonText="촬영"
                           />
                         </div>
