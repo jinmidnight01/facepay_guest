@@ -92,7 +92,7 @@ const LandingPage = () => {
   return (
     <div>
       <Header logoLink="/" />
-      {isLoading ? (
+      {true ? (
         <Loading />
       ) : (
         <div>
