@@ -11,7 +11,7 @@ import Loading from "../../components/Loading";
 
 const LandingPage = () => {
   const navigator = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const refPhoneNumber = useRef();
   const refPassword = useRef();
   const refLoginButton = useRef();
@@ -57,7 +57,6 @@ const LandingPage = () => {
   const regPhoneNumber = useMemo(() => /^010[0-9]{8}$/, []);
   const regPassword = useMemo(() => /^[0-9]{4}$/, []);
   useEffect(() => {
-    setIsLoading(true);
     const token = localStorage.getItem("accessToken");
     if (token) {
       axios
