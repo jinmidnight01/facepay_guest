@@ -4,6 +4,7 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import MyPage from "./pages/MyPage/MyPage";
 import ChargePage from "./pages/MyPage/ChargePage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/mypage/charge" element={<ChargePage />} />
+      <Route path={"*"} element={<NotFoundPage />}/>
     </Routes>
   );
 }

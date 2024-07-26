@@ -14,8 +14,12 @@ import cameraLogo from "../../images/cameraLogo.png";
 import axios from "axios";
 import hostURL from "../../hostURL";
 import Loading from "../../components/Loading";
+import MirrorImage from "../../components/MirrorImage";
+import InputValidation from "../../components/InputValidation";
+import CheckPermission from "../../components/CheckPermission";
 
 const SignupPage = () => {
+  // 텍스트 박스 입력값 상태 관리
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const refPhoneNumber = useRef();
@@ -38,7 +42,7 @@ const SignupPage = () => {
   // 웹캠 설정
   const [user_face_img, setUserFaceImg] = useState(cameraLogo);
   const [permissionsGranted, setPermissionsGranted] = useState(false);
-  const [error, setError] = useState(null);
+  const [isFaceRegistering, setIsFaceRegistering] = useState(false);
   const width = 300;
   const height = 300;
   const videoConstraints = {
@@ -53,16 +57,16 @@ const SignupPage = () => {
     faceDetection: new FaceDetection.FaceDetection({
       locateFile: (file) =>
         `https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/${file}`,
-    }),
+    }, [isFaceRegistering]),
     camera: ({ mediaSrc, onFrame }) =>
       new Camera(mediaSrc, {
         onFrame,
         width,
         height,
-      }),
-  });
+      },[isFaceRegistering]),
+  }, [isFaceRegistering]); 
 
-  // 얼굴 초점 위치(top: 37~44, right: 24~33, width: 35~45, height: 28~35)
+  // 얼굴 초점 위치에 따른 버튼 활성화
   const handleChange = (yCenter, xCenter, width, height) => {
     if (
       yCenter >= 0.35 &&
@@ -93,88 +97,21 @@ const SignupPage = () => {
     ) {
       document.getElementById("main").style.display = "none";
       document.getElementById("modal").style.display = "flex";
+      setIsFaceRegistering(true);
       return;
     }
     document.getElementById("main").style.display = "block";
     document.getElementById("modal").style.display = "none";
-  };
-
-  // 좌우 반전 함수
-  const mirrorImage = (imageSrc, callback) => {
-    const img = new Image();
-    img.src = imageSrc;
-    img.onload = () => {
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-      canvas.width = img.width;
-      canvas.height = img.height;
-
-      // 좌우 반전
-      ctx.translate(canvas.width, 0);
-      ctx.scale(-1, 1);
-      ctx.drawImage(img, 0, 0);
-
-      canvas.toBlob(callback, "image/jpeg");
-    };
+    setIsFaceRegistering(false);
   };
 
   // REST API: post user data
   const handleSubmit = async (e) => {
-    const flagPhoneNumber = regPhoneNumber.test(phone_number);
-    const flagPassword = regPassword.test(password);
-    const flagUserName = regUserName.test(username);
-
     // prevent page reset
     e.preventDefault();
 
     // input validation
-    if (user_face_img === cameraLogo) {
-      alert("얼굴 사진을 등록해주세요");
-      return;
-    }
-    if (!flagPhoneNumber) {
-      if (!flagPassword) {
-        if (!flagUserName) {
-          alert(
-            "전화번호, 비밀번호, 이름 정보를 재입력 해주세요\n• 전화번호 형식: 01012345678\n• 비밀번호 형식: 4자리 숫자\n• 이름 형식: 2~4글자 한글"
-          );
-        } else {
-          alert(
-            "전화번호, 비밀번호 정보를 재입력 해주세요\n• 전화번호 형식: 01012345678\n• 비밀번호 형식: 4자리 숫자"
-          );
-        }
-      } else {
-        if (!flagUserName) {
-          alert(
-            "전화번호, 이름 정보를 재입력 해주세요\n• 전화번호 형식: 01012345678\n• 이름 형식: 2~4글자 한글"
-          );
-        } else {
-          alert(
-            "전화번호 정보를 재입력 해주세요\n• 전화번호 형식: 01012345678"
-          );
-        }
-      }
-      refPhoneNumber.current.focus();
-      return;
-    } else {
-      if (!flagPassword) {
-        if (!flagUserName) {
-          alert(
-            "비밀번호, 이름 정보를 재입력 해주세요\n• 비밀번호 형식: 4자리 숫자\n• 이름 형식: 2~4글자 한글"
-          );
-        } else {
-          alert("비밀번호 정보를 재입력 해주세요\n• 비밀번호 형식: 4자리 숫자");
-        }
-        refPassword.current.focus();
-        return;
-      } else {
-        if (!flagUserName) {
-          alert("이름 정보를 재입력 해주세요\n• 이름 형식: 2~4글자 한글");
-          refUserName.current.focus();
-          return;
-        }
-      }
-    }
+    InputValidation(user_face_img, cameraLogo, regPhoneNumber.test(phone_number), regPassword.test(password), regUserName.test(username), refPhoneNumber, refPassword, refUserName);
 
     // loading
     setIsLoading(true);
@@ -185,7 +122,7 @@ const SignupPage = () => {
     const reader = new FileReader();
     reader.readAsDataURL(blob);
     reader.onloadend = () => {
-      mirrorImage(reader.result, async (mirroredBlob) => {
+      MirrorImage(reader.result, (mirroredBlob) => {
         const formData = new FormData();
         formData.append("user_face_img", mirroredBlob);
         formData.append("phone_number", phone_number);
@@ -222,30 +159,12 @@ const SignupPage = () => {
     };
   };
 
-  // input focus
+  // camera permission check & input focus
   const regPhoneNumber = useMemo(() => /^010[0-9]{8}$/, []);
   const regPassword = useMemo(() => /^[0-9]{4}$/, []);
   const regUserName = useMemo(() => /^[가-힣]{2,4}$/, []);
   useEffect(() => {
-    const checkPermissions = async () => {
-      const storedPermission = localStorage.getItem('cameraPermission');
-      if (storedPermission === 'granted') {
-        setPermissionsGranted(true);
-      } else {
-        try {
-          const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-          if (stream) {
-            setPermissionsGranted(true);
-            localStorage.setItem('cameraPermission', 'granted');
-          }
-        } catch (err) {
-          setError('Camera access denied');
-          localStorage.setItem('cameraPermission', 'denied');
-        }
-      }
-    };
-
-    checkPermissions();
+    CheckPermission(setPermissionsGranted);
     refPhoneNumber.current.focus();
   }, []);
   useEffect(() => {
@@ -259,35 +178,6 @@ const SignupPage = () => {
     }
   }, [password, regPassword]);
 
-  const test = () => {
-    return (
-      <Webcam
-      ref={webcamRef}
-      videoConstraints={videoConstraints}
-      forceScreenshotSourceSize
-      screenshotFormat="image/jpeg"
-      mirrored={true}
-      width="300px"
-      height="300px"
-      className={styles.webcam}
-    >
-      {({ getScreenshot }) => (
-        <div className={styles.buttonBox}>
-          <Button
-            onClick={() => {
-              const image_Src = getScreenshot();
-              setUserFaceImg(image_Src);
-              handleModal();
-            }}
-            id="button"
-            buttonColor="#6e6e6e99"
-            buttonText="촬영"
-          />
-        </div>
-      )}
-    </Webcam>
-    );
-  }
 
   return (
     <div>
@@ -393,7 +283,7 @@ const SignupPage = () => {
                   ))}
 
                   <div className={styles.webcamBox}>
-                    {permissionsGranted &&
+                  {permissionsGranted &&
                     <Webcam
                       ref={webcamRef}
                       videoConstraints={videoConstraints}
