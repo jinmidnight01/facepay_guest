@@ -1,14 +1,14 @@
 .welcomeText {
   font-size: 23px;
   font-weight: bold;
-  margin-top: 70px;
+  margin-top: 65px;
   text-align: center;
 }
 
 .chargeBox {
   background-color: #FFFFFF;
   width: 300px;
-  margin: 45px auto 30px auto;
+  margin: 45px auto 25px auto;
   border-radius: 10px;
   position: relative;
 }
