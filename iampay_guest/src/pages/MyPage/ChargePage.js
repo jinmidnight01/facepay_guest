@@ -33,7 +33,7 @@ const ChargePage = () => {
         navigator("/");
       });
     chargeRef.current.focus();
-  }, []);
+  }, [navigator]);
 
   const onChange = (e) => {
     let money = e.target.value;

@@ -37,7 +37,7 @@ const MyPage = () => {
         console.log(error);
         navigator("/");
       });
-  }, []);
+  }, [navigator]);
 
   return (
     <div>

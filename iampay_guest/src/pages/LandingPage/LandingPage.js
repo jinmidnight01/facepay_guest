@@ -72,7 +72,7 @@ const LandingPage = () => {
     else {
       setIsLoading(false);
     }
-  }, []);
+  }, [navigator]);
   useEffect(() => {
     if (regPhoneNumber.test(phone_number)) {
       refPassword.current.focus();
