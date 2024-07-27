@@ -6,11 +6,12 @@ import hostURL from "../../hostURL";
 import styles from "../../css/MyPage.module.css";
 import Loading from "../../components/Loading";
 import Footer from "../../components/Footer";
+import arrow from "../../images/arrow.png";
 
 const MyPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState({});
-  const [result, setResult] = useState([]);
+  // const [result, setResult] = useState([]);
   const navigator = useNavigate();
 
   useEffect(() => {
@@ -25,7 +26,6 @@ const MyPage = () => {
       .then((response) => {
         setUserData(response.data);
         setIsLoading(false);
-        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -33,29 +33,33 @@ const MyPage = () => {
       });
 
     // payment 정보 가져오기
-    axios
-      .get(`${hostURL}/api/payments`)
-      .then((response) => {
-        setResult(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    // axios
+    //   .get(`${hostURL}/api/payments`)
+    //   .then((response) => {
+    //     setResult(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
   }, [navigator]);
 
+  const onClick = () => {
+    navigator("/mypage/record", { state: { username: userData.username } });
+  };
+
   // user의 payment 정보만 가져와서 정렬
-  let filteredResult = [];
-  if (result.length !== 0) {
-    filteredResult = [...result.payments]
-      .sort((a, b) => {
-        if (a.payments_date > b.payments_date) return -1;
-        if (a.payments_date < b.payments_date) return 1;
-        return 0;
-      })
-      .filter((payment) => {
-        return payment.user_name === userData.username;
-      });
-  }
+  // let filteredResult = [];
+  // if (result.length !== 0) {
+  //   filteredResult = [...result.payments]
+  //     .sort((a, b) => {
+  //       if (a.payments_date > b.payments_date) return -1;
+  //       if (a.payments_date < b.payments_date) return 1;
+  //       return 0;
+  //     })
+  //     .filter((payment) => {
+  //       return payment.user_name === userData.username;
+  //     });
+  // }
 
   return (
     <div>
@@ -89,12 +93,9 @@ const MyPage = () => {
             <div className={styles.paymentLine}>
               <div className={styles.paymentTitle}>정산 금액</div>
               <div>
-                {Number(userData.total_price) - Number(userData.discount) >=
-                0 ? (
+                {Number(userData.net_price) >= 0 ? (
                   <span className={styles.paymentWaiting}>
-                    {(
-                      Number(userData.total_price) - Number(userData.discount)
-                    ).toLocaleString()}
+                    {Number(userData.net_price).toLocaleString()}
                   </span>
                 ) : (
                   <span className={styles.paymentWaiting}>0</span>
@@ -104,7 +105,14 @@ const MyPage = () => {
             </div>
           </div>
 
-          <div className={styles.paymentRecordBox}>
+          <div onClick={onClick} className={styles.recordLinkBox}>
+            <div className={styles.recordLinkLine}>
+              <div>주문 내역 보기</div>
+              <img src={arrow} alt="이동" />
+            </div>
+          </div>
+
+          {/* <div className={styles.paymentRecordBox}>
             <div className={styles.paymentRecordLine}>
               <div>주문 일시</div>
               <div>금액</div>
@@ -125,7 +133,7 @@ const MyPage = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       )}
 

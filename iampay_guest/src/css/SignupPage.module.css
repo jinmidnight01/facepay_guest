@@ -6,11 +6,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 75px;
+  margin-top: 65px;
 }
 
 .tempLogo {
-  width: 130px;
+  width: 120px;
 }
 
 .loginForm {

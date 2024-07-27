@@ -14,18 +14,18 @@
 }
 
 .paymentBox {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 300px;
-  margin: 0 auto 25px auto;
+  margin: 0 auto 20px auto;
   border-radius: 10px;
-  padding: 15px 0;
+  padding: 13px 0;
 }
 
 .paymentLine {
-  font-size: 20px;
+  font-size: 18px;
   width: 250px;
   margin: 0 auto;
-  padding: 8px 0;
+  padding: 6px 0;
   display: flex;
   justify-content: space-between;
 }
@@ -40,43 +40,36 @@
 
 .paymentWaiting {
   font-weight: bold;
-  color: #FF5555;
-  font-size: 23px;
+  color: #ff5555;
+  font-size: 20px;
 }
 
-.paymentRecordBox {
-  background-color: #FFFFFF;
+.recordLinkBox {
+  background-color: #ffffff;
   width: 300px;
-  min-height: 150px;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 25px auto;
   border-radius: 10px;
   padding: 15px 0;
 }
 
-.paymentRecordLine {
-  font-size: 20px;
-  width: 200px;
+.recordLinkBox:active {
+  opacity: 0.5;
+}
+
+.recordLinkLine {
+  font-size: 16px;
+  width: 250px;
   margin: 0 auto;
-  padding-top: 8px;
   display: flex;
   justify-content: space-between;
+}
+
+.recordLinkLine div {
   font-weight: bold;
 }
 
-.paymentRecordBox hr {
-  width: 255px;
-  margin-bottom: 0;
-}
-
-.paymentRecordRow {
-  font-size: 18px;
-  width: 240px;
-  margin: 0 auto;
-  padding-top: 8px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.paymentRecordRow .left {
-  margin-left: 10px;
+.recordLinkLine img {
+  width: 16px;
+  height: 14px;
+  margin-top: 2.5px;
 }
