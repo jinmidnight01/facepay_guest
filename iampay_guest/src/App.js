@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import MyPage from "./pages/MyPage/MyPage";
-import ChargePage from "./pages/MyPage/ChargePage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/mypage" element={<MyPage />} />
-      <Route path="/mypage/charge" element={<ChargePage />} />
       <Route path={"*"} element={<NotFoundPage />}/>
     </Routes>
   );

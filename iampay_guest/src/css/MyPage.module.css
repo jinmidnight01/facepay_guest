@@ -5,79 +5,77 @@
   text-align: center;
 }
 
-.paymentWaitingBox {
-  background-color: #FFFFFF;
-  width: 300px;
-  margin: 45px auto;
-  border-radius: 10px;
-  padding-bottom: 25px;
+.guideText {
+  font-size: 15px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  color: grey;
 }
 
-.paymentWaitingText {
+.paymentBox {
+  background-color: #FFFFFF;
+  width: 300px;
+  margin: 0 auto 25px auto;
+  border-radius: 10px;
+  padding: 15px 0;
+}
+
+.paymentLine {
   font-size: 20px;
-  font-weight: bold;
-  padding: 25px 0 8px 0;
-  border-bottom: 0.5px solid black;
   width: 250px;
   margin: 0 auto;
+  padding: 8px 0;
+  display: flex;
+  justify-content: space-between;
 }
 
-.paymentWaitingAmount {
-  padding-left: 25px;
-  margin: 15px 0 7px 0;
-  font-size: 28px;
+.paymentTitle {
   font-weight: bold;
 }
 
-.paymentWaitingDetail {
-  padding-left: 21px;
-  margin: 0 auto;
+.paymentBox hr {
+  width: 255px;
 }
 
-.paymentWaitingDetail span {
-  line-height: 26px;
-}
-
-.boldText {
-  font-weight: bold;
-}
-
-.accountInfo {
-  text-decoration: underline;
-  cursor: pointer;  
-}
-
-.copyImg {
-  cursor: pointer;
-  margin-left: 5px;
-  padding-top: 4px;
-}
-
-.alertSign {
+.paymentWaiting {
   font-weight: bold;
   color: #FF5555;
-  text-align: center;
-  margin-top: 20px;
-  padding-left: 10px;
+  font-size: 23px;
 }
 
-.balanceBox {
+.paymentRecordBox {
   background-color: #FFFFFF;
   width: 300px;
-  margin: 45px auto 25px auto;
+  margin: 0 auto 20px auto;
   border-radius: 10px;
+  padding: 15px 0;
 }
 
-.balanceText {
+.paymentRecordLine {
   font-size: 20px;
+  width: 200px;
+  margin: 0 auto;
+  padding-top: 8px;
+  display: flex;
+  justify-content: space-between;
   font-weight: bold;
-  padding: 25px 0 0 25px;
 }
 
-.balanceNumber {
-  font-size: 35px;
-  font-weight: bold;
-  padding: 35px 0 60px 20px;
-  text-align: center;
-  line-height: 40px;
+.paymentRecordBox hr {
+  width: 255px;
+  margin-bottom: 0;
+}
+
+.paymentRecordRow {
+  font-size: 18px;
+  width: 240px;
+  margin: 0 auto;
+  padding-top: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.paymentRecordRow .left {
+  margin-left: 10px;
 }
