@@ -17,6 +17,7 @@ import Loading from "../../components/Loading";
 import MirrorImage from "../../components/MirrorImage";
 import InputValidation from "../../components/InputValidation";
 import CheckPermission from "../../components/CheckPermission";
+import { Link } from "react-router-dom";
 
 const SignupPage = () => {
   // 텍스트 박스 입력값 상태 관리
@@ -38,6 +39,10 @@ const SignupPage = () => {
     });
   };
   const { phone_number, password, username } = inputs;
+  const [checked, setChecked] = useState(false);
+  const handleCheckboxChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   // 웹캠 설정
   const [user_face_img, setUserFaceImg] = useState(cameraLogo);
@@ -63,7 +68,7 @@ const SignupPage = () => {
         width,
         height,
       }),
-  }); 
+  });
 
   // 얼굴 초점 위치에 따른 버튼 활성화
   // const handleChange = (yCenter, xCenter, width, height) => {
@@ -108,7 +113,21 @@ const SignupPage = () => {
     e.preventDefault();
 
     // input validation
-    InputValidation(user_face_img, cameraLogo, regPhoneNumber.test(phone_number), regPassword.test(password), regUserName.test(username), refPhoneNumber, refPassword, refUserName);
+    if (
+      InputValidation(
+        user_face_img,
+        cameraLogo,
+        checked,
+        regPhoneNumber.test(phone_number),
+        regPassword.test(password),
+        regUserName.test(username),
+        refPhoneNumber,
+        refPassword,
+        refUserName
+      ) === false
+    ) {
+      return;
+    }
 
     // loading
     setIsLoading(true);
@@ -174,7 +193,6 @@ const SignupPage = () => {
     }
   }, [password, regPassword]);
 
-
   return (
     <div>
       <Header logoLink="/" />
@@ -233,6 +251,24 @@ const SignupPage = () => {
                   className={styles.camera}
                 />
               </label>
+              <div className={styles.checkBox}>
+                <input
+                  type="checkbox"
+                  id="check1"
+                  checked={checked}
+                  onChange={handleCheckboxChange}
+                />
+                <label for="check1"></label>
+                <div className={styles.agreementText}>
+                  (필수) 개인정보 수집∙이용에 동의합니다.{" "}
+                  <Link
+                    className={styles.agreementLink}
+                    to="https://plip.kr/pcc/0a100b94-05ce-41d9-90d2-8247e675c838/privacy/2.html"
+                  >
+                    [보기]
+                  </Link>
+                </div>
+              </div>
               <Button
                 type="submit"
                 onClick={handleSubmit}
@@ -243,7 +279,9 @@ const SignupPage = () => {
           </div>
 
           <div className={styles.modal} id="modal">
-            <div className={styles.modalText}>얼굴을 박스에 고정 후 촬영해주세요</div>
+            <div className={styles.modalText}>
+              얼굴을 박스에 고정 후 촬영해주세요
+            </div>
             <div className={styles.screenBox}>
               <img
                 src={faceGuide}
@@ -277,32 +315,33 @@ const SignupPage = () => {
                   ))}
 
                   <div className={styles.webcamBox}>
-                  {permissionsGranted &&
-                    <Webcam
-                      ref={webcamRef}
-                      videoConstraints={videoConstraints}
-                      forceScreenshotSourceSize
-                      screenshotFormat="image/jpeg"
-                      mirrored={true}
-                      width="300px"
-                      height="300px"
-                      className={styles.webcam}
-                    >
-                      {({ getScreenshot }) => (
-                        <div className={styles.buttonBox}>
-                          <Button
-                            onClick={() => {
-                              const image_Src = getScreenshot();
-                              setUserFaceImg(image_Src);
-                              handleModal();
-                            }}
-                            id="button"
-                            buttonColor="#FF5555"
-                            buttonText="촬영"
-                          />
-                        </div>
-                      )}
-                    </Webcam>}
+                    {permissionsGranted && (
+                      <Webcam
+                        ref={webcamRef}
+                        videoConstraints={videoConstraints}
+                        forceScreenshotSourceSize
+                        screenshotFormat="image/jpeg"
+                        mirrored={true}
+                        width="300px"
+                        height="300px"
+                        className={styles.webcam}
+                      >
+                        {({ getScreenshot }) => (
+                          <div className={styles.buttonBox}>
+                            <Button
+                              onClick={() => {
+                                const image_Src = getScreenshot();
+                                setUserFaceImg(image_Src);
+                                handleModal();
+                              }}
+                              id="button"
+                              buttonColor="#FF5555"
+                              buttonText="촬영"
+                            />
+                          </div>
+                        )}
+                      </Webcam>
+                    )}
                   </div>
                 </div>
               </div>

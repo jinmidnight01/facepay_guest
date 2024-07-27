@@ -1,4 +1,4 @@
-const hostURL = "http://localhost:8080";
-// const hostURL = "http://172.30.17.81:3000";
+// const hostURL = "http://localhost:8080";
+const hostURL = "https://refeat.ai";
 
 export default hostURL;
