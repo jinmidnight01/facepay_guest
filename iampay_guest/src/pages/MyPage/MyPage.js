@@ -12,6 +12,9 @@ const MyPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState({});
   const navigator = useNavigate();
+  const onClick = () => {
+    navigator("/mypage/record", { state: { username: userData.username, total_price: userData.total_price } });
+  };
 
   useEffect(() => {
     // user 정보 가져오기
@@ -32,10 +35,6 @@ const MyPage = () => {
       });
   }, [navigator]);
 
-  const onClick = () => {
-    navigator("/mypage/record", { state: { username: userData.username } });
-  };
-
   return (
     <div>
       <Header logoLink="/mypage" />
@@ -47,6 +46,7 @@ const MyPage = () => {
           <div className={styles.welcomeText}>
             {userData.username}님, 안녕하세요
           </div>
+          
           <div className={styles.guideText}>
             정산 방식은 아래 서비스 안내를 참고해주세요
           </div>

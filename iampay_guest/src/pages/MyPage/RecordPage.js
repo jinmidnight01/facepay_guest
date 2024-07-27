@@ -53,6 +53,13 @@ const RecordPage = () => {
         <Loading />
       ) : (
         <div>
+          <div className={styles.totalPaymentBox}>
+            <div className={styles.totalPaymentRow}>
+              <div>주문 총액</div>
+              <div>{Number(output.total_price).toLocaleString()}&nbsp;원</div>
+            </div>
+          </div>
+
           <div className={styles.paymentRecordBox}>
             <div className={styles.paymentRecordLine}>
               <div>주문 일시</div>
@@ -60,90 +67,6 @@ const RecordPage = () => {
             </div>
             <hr />
             <div className={styles.paymentRecordBody}>
-              <div className={styles.paymentRecordRow}>
-                <div className={styles.left}>
-                  <span>08</span>.<span>05</span>&nbsp;
-                  <span>14:30</span>
-                </div>
-                <div className={styles.right}>2,000&nbsp;원</div>
-              </div>
-              <div className={styles.paymentRecordRow}>
-                <div className={styles.left}>
-                  <span>08</span>.<span>05</span>&nbsp;
-                  <span>14:30</span>
-                </div>
-                <div className={styles.right}>2,000&nbsp;원</div>
-              </div>
-              <div className={styles.paymentRecordRow}>
-                <div className={styles.left}>
-                  <span>08</span>.<span>05</span>&nbsp;
-                  <span>14:30</span>
-                </div>
-                <div className={styles.right}>2,000&nbsp;원</div>
-              </div>
-              <div className={styles.paymentRecordRow}>
-                <div className={styles.left}>
-                  <span>08</span>.<span>05</span>&nbsp;
-                  <span>14:30</span>
-                </div>
-                <div className={styles.right}>2,000&nbsp;원</div>
-              </div>
-              <div className={styles.paymentRecordRow}>
-                <div className={styles.left}>
-                  <span>08</span>.<span>05</span>&nbsp;
-                  <span>14:30</span>
-                </div>
-                <div className={styles.right}>2,000&nbsp;원</div>
-              </div>
-              <div className={styles.paymentRecordRow}>
-                <div className={styles.left}>
-                  <span>08</span>.<span>05</span>&nbsp;
-                  <span>14:30</span>
-                </div>
-                <div className={styles.right}>2,000&nbsp;원</div>
-              </div>
-              <div className={styles.paymentRecordRow}>
-                <div className={styles.left}>
-                  <span>08</span>.<span>05</span>&nbsp;
-                  <span>14:30</span>
-                </div>
-                <div className={styles.right}>2,000&nbsp;원</div>
-              </div>
-              <div className={styles.paymentRecordRow}>
-                <div className={styles.left}>
-                  <span>08</span>.<span>05</span>&nbsp;
-                  <span>14:30</span>
-                </div>
-                <div className={styles.right}>2,000&nbsp;원</div>
-              </div>
-              <div className={styles.paymentRecordRow}>
-                <div className={styles.left}>
-                  <span>08</span>.<span>05</span>&nbsp;
-                  <span>14:30</span>
-                </div>
-                <div className={styles.right}>2,000&nbsp;원</div>
-              </div>
-              <div className={styles.paymentRecordRow}>
-                <div className={styles.left}>
-                  <span>08</span>.<span>05</span>&nbsp;
-                  <span>14:30</span>
-                </div>
-                <div className={styles.right}>2,000&nbsp;원</div>
-              </div>
-              <div className={styles.paymentRecordRow}>
-                <div className={styles.left}>
-                  <span>08</span>.<span>05</span>&nbsp;
-                  <span>14:30</span>
-                </div>
-                <div className={styles.right}>2,000&nbsp;원</div>
-              </div>
-              <div className={styles.paymentRecordRow}>
-                <div className={styles.left}>
-                  <span>08</span>.<span>05</span>&nbsp;
-                  <span>14:30</span>
-                </div>
-                <div className={styles.right}>2,000&nbsp;원</div>
-              </div>
               {filteredResult.map((payment) => (
                 <div
                   className={styles.paymentRecordRow}
