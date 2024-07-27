@@ -11,7 +11,6 @@ import arrow from "../../images/arrow.png";
 const MyPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState({});
-  // const [result, setResult] = useState([]);
   const navigator = useNavigate();
 
   useEffect(() => {
@@ -31,35 +30,11 @@ const MyPage = () => {
         console.log(error);
         navigator("/");
       });
-
-    // payment 정보 가져오기
-    // axios
-    //   .get(`${hostURL}/api/payments`)
-    //   .then((response) => {
-    //     setResult(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
   }, [navigator]);
 
   const onClick = () => {
     navigator("/mypage/record", { state: { username: userData.username } });
   };
-
-  // user의 payment 정보만 가져와서 정렬
-  // let filteredResult = [];
-  // if (result.length !== 0) {
-  //   filteredResult = [...result.payments]
-  //     .sort((a, b) => {
-  //       if (a.payments_date > b.payments_date) return -1;
-  //       if (a.payments_date < b.payments_date) return 1;
-  //       return 0;
-  //     })
-  //     .filter((payment) => {
-  //       return payment.user_name === userData.username;
-  //     });
-  // }
 
   return (
     <div>
@@ -111,29 +86,6 @@ const MyPage = () => {
               <img src={arrow} alt="이동" />
             </div>
           </div>
-
-          {/* <div className={styles.paymentRecordBox}>
-            <div className={styles.paymentRecordLine}>
-              <div>주문 일시</div>
-              <div>금액</div>
-            </div>
-            <hr />
-            {filteredResult.map((payment) => (
-              <div
-                className={styles.paymentRecordRow}
-                key={payment.payments_id}
-              >
-                <div className={styles.left}>
-                  <span>{payment.payments_date.substr(5, 2)}</span>.
-                  <span>{payment.payments_date.substr(8, 2)}</span>&nbsp;
-                  <span>{payment.payments_date.substr(11, 5)}</span>
-                </div>
-                <div className={styles.right}>
-                  {Number(payment.price).toLocaleString()}&nbsp;원
-                </div>
-              </div>
-            ))}
-          </div> */}
         </div>
       )}
 

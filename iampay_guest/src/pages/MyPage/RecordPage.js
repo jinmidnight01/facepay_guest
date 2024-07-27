@@ -15,6 +15,10 @@ const RecordPage = () => {
   const navigator = useNavigate();
 
   useEffect(() => {
+    if (output === null) {
+      navigator("/");
+    }
+
     // payment 정보 가져오기
     axios
       .get(`${hostURL}/api/payments`)
@@ -49,9 +53,6 @@ const RecordPage = () => {
         <Loading />
       ) : (
         <div>
-          <div className={styles.welcomeText}>
-            {output.username}님, 안녕하세요
-          </div>
           <div className={styles.paymentRecordBox}>
             <div className={styles.paymentRecordLine}>
               <div>주문 일시</div>
