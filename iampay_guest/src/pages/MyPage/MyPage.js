@@ -25,6 +25,7 @@ const MyPage = () => {
       .then((response) => {
         setUserData(response.data);
         setIsLoading(false);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -74,20 +75,25 @@ const MyPage = () => {
           <div className={styles.paymentBox}>
             <div className={styles.paymentLine}>
               <div className={styles.paymentTitle}>주문 총액</div>
-              <div>{Number(userData.balance).toLocaleString()}&nbsp;원</div>
+              <div>{Number(userData.total_price).toLocaleString()}&nbsp;원</div>
             </div>
             <div className={styles.paymentLine}>
               <div className={styles.paymentTitle}>할인 금액</div>
-              <div>-{Number(userData.balance).toLocaleString()}&nbsp;원</div>
+              {Number(userData.discount) !== 0 ? (
+                <div>-{Number(userData.discount).toLocaleString()}&nbsp;원</div>
+              ) : (
+                <div>0&nbsp;원</div>
+              )}
             </div>
             <hr />
             <div className={styles.paymentLine}>
               <div className={styles.paymentTitle}>정산 금액</div>
               <div>
-                {userData.balance - userData.balance >= 0 ? (
+                {Number(userData.total_price) - Number(userData.discount) >=
+                0 ? (
                   <span className={styles.paymentWaiting}>
-                    {Number(
-                      userData.balance - userData.balance
+                    {(
+                      Number(userData.total_price) - Number(userData.discount)
                     ).toLocaleString()}
                   </span>
                 ) : (
