@@ -29,7 +29,7 @@ const RecordPage = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [navigator]);
+  }, [navigator, output]);
 
   // user의 payment 정보만 가져와서 정렬
   let filteredResult = [];
