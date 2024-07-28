@@ -16,7 +16,7 @@ const Footer = () => {
         </div>
         <div className={styles.footerText}>
           <Link
-            to="https://google.com"
+            to="http://pf.kakao.com/_TxdxdyG"
             className={styles.footerLink}
           >
             고객 센터
