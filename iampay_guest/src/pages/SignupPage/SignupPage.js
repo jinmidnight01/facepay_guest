@@ -239,7 +239,7 @@ const SignupPage = () => {
                 ref={refUserName}
                 maxLength={4}
                 value={username}
-                placeholder="이름을 입력해주세요 (금액 충전 시 필요)"
+                placeholder="이름을 입력해주세요 (정산 시 필요)"
                 className={styles.inputBox}
               />
               <label className={styles.cameraBox}>
