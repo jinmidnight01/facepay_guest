@@ -229,7 +229,7 @@ const SignupPage = () => {
                 ref={refPassword}
                 maxLength={4}
                 value={password}
-                placeholder="4자리의 비밀번호를 설정해주세요"
+                placeholder="결제에 필요한 4자리의 비밀번호를 설정해주세요"
                 className={styles.inputBox}
               />
               <input
