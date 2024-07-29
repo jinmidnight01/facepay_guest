@@ -7,6 +7,8 @@ import styles from "../../css/MyPage.module.css";
 import Loading from "../../components/Loading";
 import Footer from "../../components/Footer";
 import arrow from "../../images/arrow.png";
+import banner from "../../images/banner.png";
+import { Link } from "react-router-dom";
 
 const MyPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -47,6 +49,12 @@ const MyPage = () => {
             {userData.username}님, 안녕하세요
           </div>
           
+          <div className={styles.bannerBox}>
+            <Link to="https://forms.gle/UF9H5vX8M5A2kRRv5" className={styles.bannerLink}>
+              <img className={styles.banner} src={banner} alt="배너" />
+            </Link>
+          </div>
+
           <div className={styles.guideText}>
             정산 방식은 아래 서비스 안내를 참고해주세요
           </div>

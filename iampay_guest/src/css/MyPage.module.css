@@ -1,14 +1,28 @@
 .welcomeText {
   font-size: 23px;
   font-weight: bold;
-  margin-top: 65px;
+  margin-top: 45px;
   text-align: center;
+}
+
+.bannerBox {
+  width: 300px;
+  margin: 20px auto 15px auto;
+}
+
+.banner {
+  width: 300px;
+  height: 80px;
+  border-radius: 10px;
+}
+
+.banner:active {
+  opacity: 0.8;
 }
 
 .guideText {
   font-size: 15px;
   text-align: center;
-  margin-top: 40px;
   margin-bottom: 15px;
   color: grey;
 }
@@ -16,7 +30,7 @@
 .paymentBox {
   background-color: #ffffff;
   width: 300px;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 15px auto;
   border-radius: 10px;
   padding: 13px 0;
 }
