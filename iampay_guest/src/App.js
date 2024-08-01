@@ -5,11 +5,13 @@ import SignupPage from "./pages/SignupPage/SignupPage";
 import MyPage from "./pages/MyPage/MyPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import RecordPage from "./pages/MyPage/RecordPage";
+import LoginPage from "./pages/LandingPage/LoginPage";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/mypage/record" element={<RecordPage />} />

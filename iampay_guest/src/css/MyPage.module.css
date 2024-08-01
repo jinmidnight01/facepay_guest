@@ -24,6 +24,7 @@
   font-size: 15px;
   text-align: center;
   margin-bottom: 15px;
+  margin-top: 30px;
   color: grey;
 }
 
@@ -86,4 +87,45 @@
   width: 16px;
   height: 14px;
   margin-top: 2.5px;
+}
+
+.googleformGuide {
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.googleformGuide span {
+  color: #FF5555;
+}
+
+.afterGuideText {
+  text-align: center;
+  font-size: 15px;
+  margin-top: 25px;
+  color: grey;
+  line-height: 25px;
+}
+
+.afterGuideText span {
+  font-weight: bold;
+  color: #FF5555;
+}
+
+.googleformLinkBox {
+  background-color: #ffffff;
+  width: 250px;
+  margin: 20px auto 15px auto;
+  border-radius: 10px;
+  padding: 10px 15px;
+  line-height: 25px;
+}
+
+.googleformLinkBox span {
+  font-weight: bold;
+}
+
+.googleformLinkTitle {
+  font-size: 17px;
 }

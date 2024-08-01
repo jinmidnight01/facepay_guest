@@ -1,61 +1,18 @@
-import { React, useState, useRef, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { React, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../../css/LandingPage.module.css";
 import Header from "../../components/Header";
-import tempLogo from "../../images/tempLogo.png";
-import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import axios from "axios";
 import hostURL from "../../hostURL";
 import Loading from "../../components/Loading";
+import Button from "../../components/Button";
 
 const LandingPage = () => {
   const navigator = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-  const refPhoneNumber = useRef();
-  const refPassword = useRef();
-  const refLoginButton = useRef();
-  const [inputs, setInputs] = useState({
-    phone_number: "",
-    password: "",
-  });
-  const onChange = (e) => {
-    const { value, name } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  };
-  const { phone_number, password } = inputs;
 
-  // REST API: login
-  const login = (e) => {
-    // prevent page reset
-    e.preventDefault();
-
-    // loading
-    setIsLoading(true);
-
-    // 로그인 POST
-    axios
-      .post(`${hostURL}/api/users/log-in`, inputs)
-      .then((response) => {
-        // 로그인 성공
-        const token = response.data.access_token;
-        localStorage.setItem("accessToken", token);
-        navigator("/mypage");
-      })
-      .catch((error) => {
-        // 등록된 유저가 아닌 경우
-        console.log(error);
-        setIsLoading(false);
-        alert("휴대폰 번호와 비밀번호를 확인해주세요");
-      });
-  };
-
-  // input focus
-  const regPhoneNumber = useMemo(() => /^010[0-9]{8}$/, []);
-  const regPassword = useMemo(() => /^[0-9]{4}$/, []);
+  // auto login
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
@@ -73,21 +30,10 @@ const LandingPage = () => {
           localStorage.removeItem("accessToken");
           navigator("/");
         });
-    }
-    else {
+    } else {
       setIsLoading(false);
     }
   }, [navigator]);
-  useEffect(() => {
-    if (regPhoneNumber.test(phone_number)) {
-      refPassword.current.focus();
-    }
-  }, [phone_number, regPhoneNumber]);
-  useEffect(() => {
-    if (regPassword.test(password)) {
-      refLoginButton.current.focus();
-    }
-  }, [password, regPassword]);
 
   return (
     <div>
@@ -96,49 +42,72 @@ const LandingPage = () => {
         <Loading />
       ) : (
         <div>
-          <div className={styles.logoBox}>
-            <img src={tempLogo} alt="tempLogo" className={styles.tempLogo} />
+          <div className={styles.homeTitle}>서비스 소개</div>
+
+          <div className={styles.serviceGuideBox}>
+            <div className={styles.serviceGuide}>
+              <span>나는</span>
+              <span>PAY</span>는 <span>오프라인 얼굴 결제 서비스</span>로,
+              한정된 고객들을 대상으로 현재{" "}
+              <Link
+                to="https://www.instagram.com/cafeseomoon"
+                className={styles.cafeSeomoonLink}
+              >
+                카페서문
+              </Link>
+              에 <span>시범 서비스</span>를 진행 중입니다.
+            </div>
+            <div className={styles.newSignup}>
+              ❗<span>신규 가입자</span>에게 <span>1만원 포인트</span> 제공❗
+            </div>
+            <div className={styles.contentBox}>
+              <span className={styles.contentTitle}>📌 고객 조건</span>
+              <div>
+                1. <span>연세대학교</span> 대학생/대학원생
+              </div>
+              <div>
+                2. (카페서문) <span>평균 주 2회</span> 이상 방문
+              </div>
+            </div>
+            <div className={styles.contentBox}>
+              <span className={styles.contentTitle}>📌 결제/정산 방식</span>
+              <div>
+                1. <span>선 주문</span> : 매장 <span>태블릿</span>으로{" "}
+                <span>얼굴결제</span> 진행
+              </div>
+              <div>
+                2. <span>후 정산</span> : <span>매달 15일, 30일</span>에{" "}
+                <span>정산</span> 진행
+              </div>
+              <div>
+                (문자 전송될 <span>계좌</span>로 <span>정산금액</span> 이체)
+              </div>
+            </div>
+            <div className={styles.contentBox}>
+              <span className={styles.contentTitle}>📌 기타 사항</span>
+              <div>
+                1. 전화번호로 <span>현금영수증</span> 발행 가능
+              </div>
+              <div>
+                2. 주문 때마다 <span>결제승인 문자</span> 발송 예정
+              </div>
+              <div>
+                3. 비정상적 결제 확인 시, <span>계정 정지</span> 가능
+              </div>
+            </div>
           </div>
-          <form className={styles.loginForm}>
-            <input
-              name="phone_number"
-              onChange={onChange}
-              type="text"
-              inputMode="numeric"
-              ref={refPhoneNumber}
-              maxLength={11}
-              value={phone_number}
-              placeholder="휴대폰 번호"
-              className={styles.inputBox}
-            />
-            <input
-              name="password"
-              onChange={onChange}
-              type="password"
-              inputMode="numeric"
-              ref={refPassword}
-              maxLength={4}
-              value={password}
-              placeholder="비밀번호"
-              className={styles.inputBox}
-            />
-          </form>
-          <div className={styles.signupBox}>
-            <Link to={"/signup"} className={styles.signupLink}>
-              회원가입
+
+          <div className={styles.loginLinkBox}>
+            <Link to="/login" className={styles.loginLink}>
+              이미 가입하셨나요?
             </Link>
           </div>
-          <Link to={"/mypage"} className={styles.buttonLink}>
-            <div className={styles.buttonBox}>
-              <button
-                ref={refLoginButton}
-                onClick={login}
-                className={styles.button}
-              >
-                로그인
-              </button>
-            </div>
-          </Link>
+
+          <Button
+            buttonLink="/signup"
+            buttonText="가입하기"
+            buttonColor="#FF5555"
+          />
         </div>
       )}
       <Footer />

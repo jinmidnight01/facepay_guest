@@ -2,7 +2,7 @@
   display: block;
 }
 
-.logoBox {
+/* .logoBox {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,14 +11,24 @@
 
 .tempLogo {
   width: 120px;
+} */
+
+.signupGuide {
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 35px;
+}
+
+.signupGuide span {
+  color: #FF5555;
 }
 
 .loginForm {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 35px;
-
+  margin-top: 5px;
 }
 
 .inputBox {
@@ -71,6 +81,25 @@
   opacity: 0.8;
 }
 
+.faCameraBox {
+  width: 230px;
+  height: 230px;
+  cursor: pointer;
+  margin: 0 20px 15px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.faCameraBox:active {
+  opacity: 0.8;
+}
+
+.faCamera {
+  width: 100px;
+  height: 100px;
+  margin: auto 0;
+}
+
 .checkBox {
   display: flex;
   margin-top: 5px;
@@ -120,11 +149,21 @@ input[id="check1"]:checked + label::after{
   flex-direction: column;
 }
 
-.modalText {
-  text-align: center;
-  margin: 35px 0 30px 0;
-  font-size: 20px;
-  font-weight: 500;
+.cameraGuide {
+  background-color: #FFFFFF;
+  width: 275px;
+  margin: 20px auto 20px auto;
+  border-radius: 10px;
+  padding: 10px 15px;
+  line-height: 25px;
+}
+
+.cameraGuide span {
+  font-weight: bold;
+}
+
+.caemraGuideTitle {
+  font-size: 17px;
 }
 
 .screenBox {
@@ -135,12 +174,11 @@ input[id="check1"]:checked + label::after{
 
 .faceGuide {
   position:absolute;
-  width: 250px;
-  height: 250px;
+  width: 230px;
+  height: 230px;
   z-index:100;
-  top: 25px;
-  left: 25px;
-  opacity: 0.5;
+  top: 35px;
+  left: 35px;
 }
 
 .screen {

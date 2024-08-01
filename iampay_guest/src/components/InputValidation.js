@@ -1,5 +1,5 @@
-const InputValidation = (user_face_img, cameraLogo, checked, flagPhoneNumber, flagPassword, flagUserName, refPhoneNumber, refPassword, refUserName) => {
-  if (user_face_img === cameraLogo) {
+const InputValidation = (user_face_img, checked, flagPhoneNumber, flagPassword, flagUserName, refPhoneNumber, refPassword, refUserName) => {
+  if (user_face_img === "") {
     alert("얼굴 사진을 등록해주세요");
     return false;
   }

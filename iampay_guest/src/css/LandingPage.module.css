@@ -1,86 +1,70 @@
-.logoBox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 65px;
-}
-
-.tempLogo {
-  width: 120px;
-}
-
-.loginForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 35px;
-}
-
-.inputBox {
-  width: 250px;
-  height: 45px;
-  margin-top: 20px;
-  padding-left: 20px;
-  border: 0.5px solid #d3d3d3;
-  border-radius: 10px;
-  font-size: 16px;
-}
-
-.inputBox:focus {
-  border: 1px solid #FF5555;
-  outline:none;
-}
-
-.inputBox::placeholder {
-  font-size: 14px;
-}
-
-.signupBox {
-  font-size: 15px;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 25px;
-}
-
-.signupLink{
-  text-decoration: none;
-  color: #999999;
-}
-
-.signupLink:active {
-  opacity: 0.8;
-}
-
-.buttonLink {
-  text-decoration: none;
-  cursor:default;
-}
-
-.buttonBox{
-  display: flex;
-  justify-content: center;
-}
-
-.button {
-  width: 280px;
-  height: 40px;
-  border: none;
-  border-radius: 10px;
-  color: #ffffff;
-  font-size: 16px;
+.homeTitle {
+  font-size: 23px;
   font-weight: bold;
-  margin: 10px;
-  cursor: pointer;
-  background-color: #FF5555;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
-.button:active {
+.serviceGuideBox {
+  background-color: #ffffff;
+  overflow: auto;
+  border-radius: 10px;
+  width: 275px;
+  margin: 0 auto 10px auto;
+  padding: 10px 15px;
+  line-height: 25px;
+}
+
+.serviceGuideBox span {
+  font-weight: bold;
+}
+
+.serviceGuide span:first-child {
+  color: #ff5555;
+}
+
+.cafeSeomoonLink {
+  color: #999999;
+  text-decoration: underline;
+}
+
+.cafeSeomoonLink:active {
   opacity: 0.8;
 }
 
-.button:focus {
-  border: 2px solid red;
-  outline:none;
+.newSignup {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.newSignup span:nth-child(2) {
+  color: #ff5555;
+  font-size: 17px;
+}
+
+.contentBox {
+  margin-top: 25px;
+}
+
+.contentTitle {
+  font-size: 17px;
+}
+
+.loginLinkBox {
+  display: flex;
+  justify-content: center;
+}
+
+.loginLink {
+  font-size: 13px;
+  text-align: center;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  color: #999999;
+  text-decoration: none;
+}
+
+.loginLink:active {
+  opacity: 0.8;
 }

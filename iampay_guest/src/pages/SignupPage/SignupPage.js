@@ -2,21 +2,20 @@ import { React, useState, useRef, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import styles from "../../css/SignupPage.module.css";
-import tempLogo from "../../images/tempLogo.png";
 import Button from "../../components/Button";
 import Webcam from "react-webcam";
 import { useFaceDetection } from "react-use-face-detection";
 import FaceDetection from "@mediapipe/face_detection";
 import { Camera } from "@mediapipe/camera_utils";
-import faceGuide from "../../images/faceGuide.png";
 import Footer from "../../components/Footer";
-import cameraLogo from "../../images/cameraLogo.png";
 import axios from "axios";
 import hostURL from "../../hostURL";
 import Loading from "../../components/Loading";
 import MirrorImage from "../../components/MirrorImage";
 import InputValidation from "../../components/InputValidation";
 import CheckPermission from "../../components/CheckPermission";
+import whiteFaceGuide from "../../images/whiteFaceGuide.png";
+import { FaCamera } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const SignupPage = () => {
@@ -45,7 +44,8 @@ const SignupPage = () => {
   };
 
   // 웹캠 설정
-  const [user_face_img, setUserFaceImg] = useState(cameraLogo);
+  const [user_face_img, setUserFaceImg] = useState("");
+  const [hasPhoto, setHasPhoto] = useState(false);
   const [permissionsGranted, setPermissionsGranted] = useState(false);
   const width = 300;
   const height = 300;
@@ -116,7 +116,6 @@ const SignupPage = () => {
     if (
       InputValidation(
         user_face_img,
-        cameraLogo,
         checked,
         regPhoneNumber.test(phone_number),
         regPassword.test(password),
@@ -169,6 +168,7 @@ const SignupPage = () => {
           })
           .catch((error) => {
             console.log(error);
+            alert("유출 위험이 있는 비밀번호입니다. 다시 입력해주세요");
             setIsLoading(false);
           });
       });
@@ -201,8 +201,8 @@ const SignupPage = () => {
       ) : (
         <div>
           <div className={styles.main} id="main">
-            <div className={styles.logoBox}>
-              <img src={tempLogo} alt="tempLogo" className={styles.tempLogo} />
+            <div className={styles.signupGuide}>
+              <span>30초</span> 만에 회원가입하기
             </div>
 
             <form
@@ -218,7 +218,7 @@ const SignupPage = () => {
                 ref={refPhoneNumber}
                 maxLength={11}
                 value={phone_number}
-                placeholder="ID로 사용될 전화번호를 입력해주세요"
+                placeholder="ID로 쓰일 전화번호를 입력해주세요"
                 className={styles.inputBox}
               />
               <input
@@ -229,7 +229,7 @@ const SignupPage = () => {
                 ref={refPassword}
                 maxLength={4}
                 value={password}
-                placeholder="4자리 비밀번호를 설정해주세요 (주문 시 필요)"
+                placeholder="4자리 비밀번호를 입력해주세요 (주문 시 필요)"
                 className={styles.inputBox}
               />
               <input
@@ -244,12 +244,22 @@ const SignupPage = () => {
               />
               <label className={styles.cameraBox}>
                 <div>얼굴 정면 사진을 찍어주세요</div>
-                <img
-                  src={user_face_img}
-                  onClick={handleModal}
-                  alt="camera"
-                  className={styles.camera}
-                />
+                {hasPhoto ? (
+                  <img
+                    src={user_face_img}
+                    onClick={handleModal}
+                    alt="camera"
+                    className={styles.camera}
+                  />
+                ) : (
+                  <div className={styles.faCameraBox} onClick={handleModal}>
+                    <FaCamera
+                      className={styles.faCamera}
+                      color="#999999"
+                      alt="camera"
+                    />
+                  </div>
+                )}
               </label>
               <div className={styles.checkBox}>
                 <input
@@ -273,18 +283,27 @@ const SignupPage = () => {
                 type="submit"
                 onClick={handleSubmit}
                 buttonColor="#FF5555"
-                buttonText="완료"
+                buttonText="다음"
               />
             </form>
           </div>
 
           <div className={styles.modal} id="modal">
-            <div className={styles.modalText}>
-              얼굴을 박스에 고정 후 촬영해주세요
+            <div className={styles.cameraGuide}>
+              <span className={styles.cameraGuideTitle}>📌 촬영 가이드</span>
+              <div>
+                1. 얼굴을 <span>박스에 고정</span> 후 촬영하기
+              </div>
+              <div>
+                2. 핸드폰 <span>촬영 높이</span>를 <span>얼굴</span>에 맞추기
+              </div>
+              <div>
+                3. 사진이 <span>흔들리지 않게</span> 촬영하기
+              </div>
             </div>
             <div className={styles.screenBox}>
               <img
-                src={faceGuide}
+                src={whiteFaceGuide}
                 alt="faceGuide"
                 className={styles.faceGuide}
                 id="faceGuide"
@@ -332,6 +351,7 @@ const SignupPage = () => {
                               onClick={() => {
                                 const image_Src = getScreenshot();
                                 setUserFaceImg(image_Src);
+                                setHasPhoto(true);
                                 handleModal();
                               }}
                               id="button"
