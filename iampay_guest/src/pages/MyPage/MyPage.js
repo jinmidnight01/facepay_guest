@@ -105,7 +105,7 @@ const MyPage = () => {
               </div>
 
               <div className={styles.afterGuideText}>
-                  고객 조건이 확인되면 전화번호로<br/><span>가입 확정 문자</span>를 보내드릴 예정입니다
+                  고객 조건이 확인되면<br/><span>가입 확정 문자</span>를 보내드릴 예정입니다
               </div>
 
               <div className={styles.googleformLinkBox}>

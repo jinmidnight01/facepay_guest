@@ -27,7 +27,8 @@
     "eject": "react-scripts eject",
     "server": "json-server --watch db.json --port 8080  --routes routes.json",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "aws s3 sync ./build s3://iampayguest --profile=iampayguest",
+    "invalidate": "aws cloudfront create-invalidation --profile=iampayguest --distribution-id=E36W6J2QYY1TU9 --paths '/*'"
   },
   "eslintConfig": {
     "extends": [
