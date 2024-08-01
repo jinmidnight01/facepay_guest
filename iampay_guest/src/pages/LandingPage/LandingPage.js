@@ -63,7 +63,7 @@ const LandingPage = () => {
             <div className={styles.contentBox}>
               <span className={styles.contentTitle}>📌 고객 조건</span>
               <div>
-                1. <span>연세대학교</span> 대학생/대학원생
+                1. <span>연세대학교</span> 대학생/대학원생 (재학/휴학)
               </div>
               <div>
                 2. (카페서문) <span>평균 주 2회</span> 이상 방문
