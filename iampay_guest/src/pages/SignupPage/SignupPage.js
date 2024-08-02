@@ -307,6 +307,9 @@ const SignupPage = () => {
               <div>
                 3. 사진이 <span>흔들리지 않게</span> 촬영하기
               </div>
+              <div className={styles.cameraErrorText}>
+                (카메라가 켜지지 않을 경우, <span>새로고침</span> 후 <span>재입력</span>)
+              </div>
             </div>
             <div className={styles.screenBox}>
               <img
