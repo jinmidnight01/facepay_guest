@@ -308,7 +308,7 @@ const SignupPage = () => {
                 3. 사진이 <span>흔들리지 않게</span> 촬영하기
               </div>
               <div className={styles.cameraErrorText}>
-                (박스만 보일 경우, <span>새로고침</span> 후 <span>재입력</span>)
+                (흰 박스만 보일 경우, <span>새로고침</span> 후 <span>재입력</span>)
               </div>
             </div>
             <div className={styles.screenBox}>
