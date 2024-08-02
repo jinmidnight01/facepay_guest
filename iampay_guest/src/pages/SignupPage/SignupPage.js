@@ -163,6 +163,7 @@ const SignupPage = () => {
               })
               .catch((error) => {
                 console.log(error);
+                alert("유출 위험이 있는 비밀번호입니다. 다시 입력해주세요");
                 setIsLoading(false);
               });
           })
