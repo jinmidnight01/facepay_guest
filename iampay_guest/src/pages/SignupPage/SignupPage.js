@@ -162,14 +162,20 @@ const SignupPage = () => {
                 navigate("/mypage");
               })
               .catch((error) => {
-                console.log(error);
-                alert("유출 위험이 있는 비밀번호입니다. 다시 입력해주세요");
+                if (error.response.data.detail === "Risky Password") {
+                  alert("유출 위험이 있는 비밀번호입니다. 다시 입력해주세요");
+                } else {
+                  alert("회원가입에 실패했습니다. 다시 시도해주세요");
+                }
                 setIsLoading(false);
               });
           })
           .catch((error) => {
-            console.log(error);
-            alert("유출 위험이 있는 비밀번호입니다. 다시 입력해주세요");
+            if (error.response.data.detail === "Risky Password") {
+              alert("유출 위험이 있는 비밀번호입니다. 다시 입력해주세요");
+            } else {
+              alert("회원가입에 실패했습니다. 다시 시도해주세요");
+            }
             setIsLoading(false);
           });
       });
