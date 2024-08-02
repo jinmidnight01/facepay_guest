@@ -171,6 +171,10 @@ input[id="check1"]:checked + label::after{
   font-size: 14px;
 }
 
+.cameraErrorText span:nth-child(1) {
+  color: #FF5555;
+}
+
 .screenBox {
   position: relative;
   width: 300px;
