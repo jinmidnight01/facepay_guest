@@ -89,7 +89,7 @@ const LandingPage = () => {
                 1. 전화번호로 <span>현금영수증</span> 발행 가능
               </div>
               <div>
-                2. 주문 때마다 <span>결제승인 문자</span> 발송 예정
+                2. 주문 때마다 <span>결제승인 문자</span> 발송
               </div>
               <div>
                 3. 비정상적 결제 확인 시, <span>계정 정지</span> 가능
