@@ -217,6 +217,25 @@ const SignupPage = () => {
               className={styles.loginForm}
               encType="multipart/form-data"
             >
+              <label className={styles.cameraBox}>
+                <div>결제에 쓰일 얼굴 정면 사진을 찍어주세요</div>
+                {hasPhoto ? (
+                  <img
+                    src={user_face_img}
+                    onClick={handleModal}
+                    alt="camera"
+                    className={styles.camera}
+                  />
+                ) : (
+                  <div className={styles.faCameraBox} onClick={handleModal}>
+                    <FaCamera
+                      className={styles.faCamera}
+                      color="#999999"
+                      alt="camera"
+                    />
+                  </div>
+                )}
+              </label>
               <input
                 name="phone_number"
                 onChange={onChange}
@@ -249,25 +268,6 @@ const SignupPage = () => {
                 placeholder="이름을 입력해주세요 (정산 시 필요)"
                 className={styles.inputBox}
               />
-              <label className={styles.cameraBox}>
-                <div>얼굴 정면 사진을 찍어주세요</div>
-                {hasPhoto ? (
-                  <img
-                    src={user_face_img}
-                    onClick={handleModal}
-                    alt="camera"
-                    className={styles.camera}
-                  />
-                ) : (
-                  <div className={styles.faCameraBox} onClick={handleModal}>
-                    <FaCamera
-                      className={styles.faCamera}
-                      color="#999999"
-                      alt="camera"
-                    />
-                  </div>
-                )}
-              </label>
               <div className={styles.checkBox}>
                 <input
                   type="checkbox"
@@ -307,9 +307,12 @@ const SignupPage = () => {
               <div>
                 3. 사진이 <span>흔들리지 않게</span> 촬영하기
               </div>
-              <div className={styles.cameraErrorText}>
-                (흰 박스만 보일 경우, <span>새로고침</span> 후 <span>재입력</span>)
+              <div>
+                4. 카메라가 안될 경우, <span className={styles.reloadGuide}>새로고침</span> 후 <span>재촬영</span>
               </div>
+              {/* <div className={styles.cameraErrorText}>
+                (흰 박스만 보일 경우, <span>새로고침</span> 후 <span>재입력</span>)
+              </div> */}
             </div>
             <div className={styles.screenBox}>
               <img

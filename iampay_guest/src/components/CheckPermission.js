@@ -11,6 +11,7 @@ const CheckPermission = async (setPermissionsGranted) => {
       }
     } catch (err) {
       localStorage.setItem('cameraPermission', 'denied');
+      setPermissionsGranted(true);
     }
   }
 };

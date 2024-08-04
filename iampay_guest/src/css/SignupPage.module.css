@@ -54,7 +54,6 @@
   width: 270px;
   background-color: #FFFFFF;
   margin-top: 20px;
-  margin-bottom: 15px;
   border: 0.5px solid #d3d3d3;
   border-radius: 10px;
   display: flex;
@@ -102,7 +101,7 @@
 
 .checkBox {
   display: flex;
-  margin-top: 5px;
+  margin-top: 15px;
   margin-bottom: 15px;
 }
 
@@ -152,7 +151,7 @@ input[id="check1"]:checked + label::after{
 .cameraGuide {
   background-color: #FFFFFF;
   width: 275px;
-  margin: 15px auto 20px auto;
+  margin: 0px auto 10px auto;
   border-radius: 10px;
   padding: 10px 15px;
   line-height: 25px;
@@ -164,6 +163,10 @@ input[id="check1"]:checked + label::after{
 
 .caemraGuideTitle {
   font-size: 17px;
+}
+
+.reloadGuide {
+  color: #FF5555;
 }
 
 .cameraErrorText {
@@ -204,6 +207,7 @@ input[id="check1"]:checked + label::after{
 .webcamBox {
   width: 300px;
   height: 300px;
+  margin-bottom: 40px;
 }
 
 .webcam {
@@ -215,5 +219,4 @@ input[id="check1"]:checked + label::after{
 .buttonBox{
   display: flex;
   justify-content: center;
-  margin-top: 20px;
 }
