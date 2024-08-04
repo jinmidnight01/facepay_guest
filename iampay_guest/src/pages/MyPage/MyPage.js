@@ -11,7 +11,7 @@ import Button from "../../components/Button";
 
 const MyPage = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [isVerified, setIsVerified] = useState(true);
+  const [isVerified, setIsVerified] = useState(false);
   const [userData, setUserData] = useState({});
   const navigator = useNavigate();
   const onClick = () => {
