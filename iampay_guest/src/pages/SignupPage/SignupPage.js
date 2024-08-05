@@ -128,6 +128,12 @@ const SignupPage = () => {
       return;
     }
 
+    // password validation with phone number
+    if (password === phone_number.substring(7,11)) {
+      alert("유출 위험이 있는 비밀번호입니다. 다시 입력해주세요");
+      return;
+    }
+
     // loading
     setIsLoading(true);
 
