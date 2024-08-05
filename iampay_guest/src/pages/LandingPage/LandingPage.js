@@ -76,7 +76,7 @@ const LandingPage = () => {
                 <span>얼굴결제</span> 진행
               </div>
               <div>
-                2. <span>후 정산</span> : <span>매달 15일, 30일</span>에{" "}
+                2. <span>후 정산</span> : <span>매달 1일, 16일</span>에{" "}
                 <span>정산</span> 진행
               </div>
               <div>
