@@ -21,7 +21,7 @@ const FaceCameraPage = () => {
     height: 300,
     facingMode: "user",
   };
-  const { webcamRef, boundingBox } = useFaceDetection({
+  const { webcamRef } = useFaceDetection({
     faceDetectionOptions: {
       model: "short",
     },
