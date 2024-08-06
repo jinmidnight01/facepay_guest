@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 const SignupPage = () => {
   // 텍스트 박스 입력값 상태 관리
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const refPhoneNumber = useRef();
   const refPassword = useRef();
   const refUserName = useRef();
@@ -42,11 +42,30 @@ const SignupPage = () => {
   const output = useLocation();
   const [hasPhoto, setHasPhoto] = useState(false);
   useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      axios
+        .get(`${hostURL}/api/users`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          navigate("/mypage", { state: response.data });
+        })
+        .catch((error) => {
+          console.log(error);
+          localStorage.removeItem("accessToken");
+          navigate("/");
+        });
+    } else {
+      setIsLoading(false);
+    }
     if (output.state) {
       setUserFaceImg(output.state.user_face_img);
       setHasPhoto(true);
     }
-  }, [output.state]);
+  }, [output.state, navigate]);
 
   // 얼굴 초점 위치에 따른 버튼 활성화
   // const handleChange = (yCenter, xCenter, width, height) => {
@@ -93,7 +112,7 @@ const SignupPage = () => {
     }
 
     // password validation with phone number
-    if (password === phone_number.substring(7,11)) {
+    if (password === phone_number.substring(7, 11)) {
       alert("유출 위험이 있는 비밀번호입니다. 다시 입력해주세요");
       return;
     }
@@ -189,12 +208,19 @@ const SignupPage = () => {
                 {hasPhoto ? (
                   <img
                     src={user_face_img}
-                    onClick={() => {navigate("/signup/facecamera")}}
+                    onClick={() => {
+                      navigate("/signup/facecamera");
+                    }}
                     alt="camera"
                     className={styles.camera}
                   />
                 ) : (
-                  <div className={styles.faCameraBox} onClick={() => {navigate("/signup/facecamera")}}>
+                  <div
+                    className={styles.faCameraBox}
+                    onClick={() => {
+                      navigate("/signup/facecamera");
+                    }}
+                  >
                     <FaCamera
                       className={styles.faCamera}
                       color="#999999"

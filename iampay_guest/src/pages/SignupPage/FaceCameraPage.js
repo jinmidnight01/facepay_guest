@@ -9,10 +9,12 @@ import Webcam from "react-webcam";
 import Header from "../../components/Header";
 import Loading from "../../components/Loading";
 import Footer from "../../components/Footer";
+import axios from "axios";
+import hostURL from "../../hostURL";
 
 const FaceCameraPage = () => {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [permissionsGranted, setPermissionsGranted] = useState(false);
   const width = 300;
   const height = 300;
@@ -59,9 +61,29 @@ const FaceCameraPage = () => {
 
   // loading
   useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      axios
+        .get(`${hostURL}/api/users`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          navigate("/mypage", { state: response.data });
+        })
+        .catch((error) => {
+          console.log(error);
+          localStorage.removeItem("accessToken");
+          navigate("/");
+        });
+    } else {
+      setIsLoading(false);
+    }
+
     CheckPermission(setPermissionsGranted);
     setIsLoading(false);
-  }, []);
+  }, [navigate]);
 
   return (
     <div>
