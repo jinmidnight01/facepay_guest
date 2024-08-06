@@ -77,8 +77,6 @@ const FaceCameraPage = () => {
           localStorage.removeItem("accessToken");
           navigate("/");
         });
-    } else {
-      setIsLoading(false);
     }
 
     CheckPermission(setPermissionsGranted);
