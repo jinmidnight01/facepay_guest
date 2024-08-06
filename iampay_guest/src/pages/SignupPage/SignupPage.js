@@ -1,20 +1,14 @@
 import { React, useState, useRef, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../../components/Header";
 import styles from "../../css/SignupPage.module.css";
 import Button from "../../components/Button";
-import Webcam from "react-webcam";
-import { useFaceDetection } from "react-use-face-detection";
-import FaceDetection from "@mediapipe/face_detection";
-import { Camera } from "@mediapipe/camera_utils";
 import Footer from "../../components/Footer";
 import axios from "axios";
 import hostURL from "../../hostURL";
 import Loading from "../../components/Loading";
 import MirrorImage from "../../components/MirrorImage";
 import InputValidation from "../../components/InputValidation";
-import CheckPermission from "../../components/CheckPermission";
-import whiteFaceGuide from "../../images/whiteFaceGuide.png";
 import { FaCamera } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -45,30 +39,14 @@ const SignupPage = () => {
 
   // 웹캠 설정
   const [user_face_img, setUserFaceImg] = useState("");
+  const output = useLocation();
   const [hasPhoto, setHasPhoto] = useState(false);
-  const [permissionsGranted, setPermissionsGranted] = useState(false);
-  const width = 300;
-  const height = 300;
-  const videoConstraints = {
-    width: 300,
-    height: 300,
-    facingMode: "user",
-  };
-  const { webcamRef, boundingBox } = useFaceDetection({
-    faceDetectionOptions: {
-      model: "short",
-    },
-    faceDetection: new FaceDetection.FaceDetection({
-      locateFile: (file) =>
-        `https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/${file}`,
-    }),
-    camera: ({ mediaSrc, onFrame }) =>
-      new Camera(mediaSrc, {
-        onFrame,
-        width,
-        height,
-      }),
-  });
+  useEffect(() => {
+    if (output.state) {
+      setUserFaceImg(output.state.user_face_img);
+      setHasPhoto(true);
+    }
+  }, [output.state]);
 
   // 얼굴 초점 위치에 따른 버튼 활성화
   // const handleChange = (yCenter, xCenter, width, height) => {
@@ -92,20 +70,6 @@ const SignupPage = () => {
   //     document.getElementById("button").setAttribute("disabled", "disabled");
   //   }
   // };
-
-  // 얼굴 사진 등록 화면 전환
-  const handleModal = () => {
-    if (
-      document.getElementById("main").style.display === "" ||
-      document.getElementById("main").style.display === "block"
-    ) {
-      document.getElementById("main").style.display = "none";
-      document.getElementById("modal").style.display = "flex";
-      return;
-    }
-    document.getElementById("main").style.display = "block";
-    document.getElementById("modal").style.display = "none";
-  };
 
   // REST API: post user data
   const handleSubmit = async (e) => {
@@ -193,9 +157,6 @@ const SignupPage = () => {
   const regPassword = useMemo(() => /^[0-9]{4}$/, []);
   const regUserName = useMemo(() => /^[가-힣]{2,4}$/, []);
   useEffect(() => {
-    CheckPermission(setPermissionsGranted);
-  }, []);
-  useEffect(() => {
     if (regPhoneNumber.test(phone_number)) {
       refPassword.current.focus();
     }
@@ -228,12 +189,12 @@ const SignupPage = () => {
                 {hasPhoto ? (
                   <img
                     src={user_face_img}
-                    onClick={handleModal}
+                    onClick={() => {navigate("/signup/facecamera")}}
                     alt="camera"
                     className={styles.camera}
                   />
                 ) : (
-                  <div className={styles.faCameraBox} onClick={handleModal}>
+                  <div className={styles.faCameraBox} onClick={() => {navigate("/signup/facecamera")}}>
                     <FaCamera
                       className={styles.faCamera}
                       color="#999999"
@@ -299,92 +260,6 @@ const SignupPage = () => {
                 buttonText="다음"
               />
             </form>
-          </div>
-
-          <div className={styles.modal} id="modal">
-            <div className={styles.cameraGuide}>
-              <span className={styles.cameraGuideTitle}>📌 촬영 가이드</span>
-              <div>
-                1. 얼굴을 <span>박스에 고정</span> 후 촬영하기
-              </div>
-              <div>
-                2. 핸드폰 <span>촬영 높이</span>를 <span>얼굴</span>에 맞추기
-              </div>
-              <div>
-                3. 사진이 <span>흔들리지 않게</span> 촬영하기
-              </div>
-              <div>
-                4. 카메라가 안될 경우, <span className={styles.reloadGuide}>새로고침</span> 후 <span>재촬영</span>
-              </div>
-              {/* <div className={styles.cameraErrorText}>
-                (흰 박스만 보일 경우, <span>새로고침</span> 후 <span>재입력</span>)
-              </div> */}
-            </div>
-            <div className={styles.screenBox}>
-              <img
-                src={whiteFaceGuide}
-                alt="faceGuide"
-                className={styles.faceGuide}
-                id="faceGuide"
-              />
-
-              <div className={styles.screen}>
-                <div className={styles.boundingBox}>
-                  {boundingBox.map((box, index) => (
-                    <div
-                      key={`${index}`}
-                      style={{
-                        border: "0px solid #FF5555",
-                        borderRadius: "50%",
-                        position: "absolute",
-                        top: `${box.yCenter * 100}%`,
-                        right: `${box.xCenter * 100}%`,
-                        width: `${box.width * 100}%`,
-                        height: `${box.height * 100}%`,
-                        zIndex: 1,
-                      }}
-                      // onChange={handleChange(
-                      //   box.yCenter,
-                      //   box.xCenter,
-                      //   box.width,
-                      //   box.height
-                      // )}
-                    />
-                  ))}
-
-                  <div className={styles.webcamBox}>
-                    {permissionsGranted && (
-                      <Webcam
-                        ref={webcamRef}
-                        videoConstraints={videoConstraints}
-                        forceScreenshotSourceSize
-                        screenshotFormat="image/jpeg"
-                        mirrored={true}
-                        width="300px"
-                        height="300px"
-                        className={styles.webcam}
-                      >
-                        {({ getScreenshot }) => (
-                          <div className={styles.buttonBox}>
-                            <Button
-                              onClick={() => {
-                                const image_Src = getScreenshot();
-                                setUserFaceImg(image_Src);
-                                setHasPhoto(true);
-                                handleModal();
-                              }}
-                              id="button"
-                              buttonColor="#FF5555"
-                              buttonText="촬영"
-                            />
-                          </div>
-                        )}
-                      </Webcam>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       )}
