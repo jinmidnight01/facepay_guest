@@ -23,7 +23,9 @@ const LandingPage = () => {
           },
         })
         .then((response) => {
-          navigator("/mypage", { state: response.data });
+          // navigator("/mypage", { state: response.data });
+          localStorage.removeItem("accessToken");
+          navigator("/");
         })
         .catch((error) => {
           console.log(error);
