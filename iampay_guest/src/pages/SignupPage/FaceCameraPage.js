@@ -93,18 +93,18 @@ const FaceCameraPage = () => {
           <div className={styles.cameraGuide}>
             <span className={styles.cameraGuideTitle}>📌 촬영 가이드</span>
             <div>
-              1. 얼굴을 <span>박스에 고정</span> 후 촬영하기
-            </div>
-            <div>
-              2. 핸드폰 <span>촬영 높이</span>를 <span>얼굴</span>에 맞추기
-            </div>
-            <div>
-              3. 사진이 <span>흔들리지 않게</span> 촬영하기
-            </div>
-            <div>
-              4. 카메라가 안될 경우,{" "}
+              1. 카메라가 안될 경우,{" "}
               <span className={styles.reloadGuide}>새로고침</span> 후{" "}
               <span>재촬영</span>
+            </div>
+            <div>
+              2. 얼굴을 <span>박스에 고정</span> 후 촬영하기
+            </div>
+            <div>
+              3. 핸드폰 <span>촬영 높이</span>를 <span>얼굴</span>에 맞추기
+            </div>
+            <div>
+              4. 사진이 <span>흔들리지 않게</span> 촬영하기
             </div>
           </div>
           <div className={styles.screenBox}>

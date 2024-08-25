@@ -12,11 +12,11 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<LoginPage />} />
+      {/* <Route path="/login" element={<LoginPage />} /> */}
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/signup/facecamera" element={<FaceCameraPage />} />
-      <Route path="/mypage" element={<MyPage />} />
-      <Route path="/mypage/record" element={<RecordPage />} />
+      {/* <Route path="/mypage" element={<MyPage />} /> */}
+      {/* <Route path="/mypage/record" element={<RecordPage />} /> */}
       <Route path={"*"} element={<NotFoundPage />}/>
     </Routes>
   );

@@ -139,25 +139,29 @@ const SignupPage = () => {
             headers: { "Content-Type": "multipart/form-data" },
           })
           .then(() => {
-            // log-in
-            axios
-              .post(`${hostURL}/api/users/log-in`, {
-                phone_number: phone_number,
-                password: password,
-              })
-              .then((response) => {
-                const token = response.data.access_token;
-                localStorage.setItem("accessToken", token);
-                navigate("/mypage");
-              })
-              .catch((error) => {
-                if (error.response.data.detail === "Risky Password") {
-                  alert("유출 위험이 있는 비밀번호입니다. 다시 입력해주세요");
-                } else {
-                  alert("회원가입에 실패했습니다. 다시 시도해주세요");
-                }
-                setIsLoading(false);
-              });
+            navigate("/");
+            setIsLoading(false);
+            alert("지금부터 얼굴결제를 이용하실 수 있습니다.\n주 1회 이상 미이용 시, 1만원 포인트가 회수될 수 있습니다.");
+
+            // // log-in
+            // axios
+            //   .post(`${hostURL}/api/users/log-in`, {
+            //     phone_number: phone_number,
+            //     password: password,
+            //   })
+            //   .then((response) => {
+            //     const token = response.data.access_token;
+            //     localStorage.setItem("accessToken", token);
+            //     navigate("/mypage");
+            //   })
+            //   .catch((error) => {
+            //     if (error.response.data.detail === "Risky Password") {
+            //       alert("유출 위험이 있는 비밀번호입니다. 다시 입력해주세요");
+            //     } else {
+            //       alert("회원가입에 실패했습니다. 다시 시도해주세요");
+            //     }
+            //     setIsLoading(false);
+            //   });
           })
           .catch((error) => {
             if (error.response.data.detail === "Risky Password") {
@@ -195,7 +199,7 @@ const SignupPage = () => {
         <div>
           <div className={styles.main} id="main">
             <div className={styles.signupGuide}>
-              <span>30초</span> 만에 회원가입하기
+              <span>10초</span> 만에 등록하기
             </div>
 
             <form
@@ -283,7 +287,7 @@ const SignupPage = () => {
                 type="submit"
                 onClick={handleSubmit}
                 buttonColor="#FF5555"
-                buttonText="다음"
+                buttonText="완료"
               />
             </form>
           </div>

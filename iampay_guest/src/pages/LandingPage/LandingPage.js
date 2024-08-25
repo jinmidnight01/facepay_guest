@@ -48,25 +48,32 @@ const LandingPage = () => {
             <div className={styles.serviceGuide}>
               <span>나는</span>
               <span>PAY</span>는 <span>오프라인 얼굴 결제 서비스</span>로,
-              한정된 고객들을 대상으로 현재{" "}
+              일부 고객들을 대상으로 현재{" "}
               <Link
                 to="https://www.instagram.com/cafeseomoon"
                 className={styles.cafeSeomoonLink}
               >
                 카페서문
               </Link>
-              에 <span>시범 서비스</span>를 진행 중입니다.
+              에서 <span>서비스</span>를 운영 중입니다.
             </div>
-            <div className={styles.newSignup}>
+            {/* <div className={styles.newSignup}>
               ❗<span>신규 가입자</span>에게 <span>1만원 포인트</span> 제공❗
             </div>
+            <br />
+            <div className={styles.serviceGuide}>
+              <span>1만원</span>이 소진되고 나서도, <span>서비스</span>를 계속 이용할 수 있습니다.
+            </div> */}
             <div className={styles.contentBox}>
-              <span className={styles.contentTitle}>📌 고객 조건</span>
-              <div>
+              <span className={styles.contentTitle}>📌 <span className={styles.redTitle}>1만원 포인트</span> 제공</span>
+              {/* <div>
                 1. <span>연세대학교</span> 대학생/대학원생 (재휴학)
+              </div> */}
+              <div>
+                1. <span>조건</span>: (카페서문) <span>주 1회</span> 이상 방문
               </div>
               <div>
-                2. (카페서문) <span>평균 주 2회</span> 이상 방문
+                2. <span className={styles.redTitle}>1만원</span>이 소진되고 나서도, <span>서비스</span>를 계속 이용할 수 있습니다.
               </div>
             </div>
             <div className={styles.contentBox}>
@@ -80,10 +87,10 @@ const LandingPage = () => {
                 <span>정산</span> 진행
               </div>
               <div>
-                (문자 전송될 <span>계좌</span>로 <span>정산금액</span> 이체)
+                (문자 전송될 <span>계좌</span>로 <span>누적 정산금액</span> 이체)
               </div>
             </div>
-            <div className={styles.contentBox}>
+            {/* <div className={styles.contentBox}>
               <span className={styles.contentTitle}>📌 기타 사항</span>
               <div>
                 1. 전화번호로 <span>현금영수증</span> 발행 가능
@@ -94,18 +101,18 @@ const LandingPage = () => {
               <div>
                 3. 비정상적 결제 확인 시, <span>계정 정지</span> 가능
               </div>
-            </div>
+            </div> */}
           </div>
 
-          <div className={styles.loginLinkBox}>
+          {/* <div className={styles.loginLinkBox}>
             <Link to="/login" className={styles.loginLink}>
               이미 가입하셨나요?
             </Link>
-          </div>
+          </div> */}
 
           <Button
             buttonLink="/signup"
-            buttonText="가입하기"
+            buttonText="포인트 받기"
             buttonColor="#FF5555"
           />
         </div>
