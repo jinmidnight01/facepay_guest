@@ -85,7 +85,7 @@ const LandingPage = () => {
                 1. <span>계좌/카드 </span>연동 <span>X</span>
               </div>
               <div>
-                2. <span>매달 1일</span>에 <span>정산</span> (전월 분)
+                2. <span>매달 1일</span>에 <span>계좌이체</span> (전월 분)
               </div>
             </div>
             {/* <div className={styles.contentBox}>
