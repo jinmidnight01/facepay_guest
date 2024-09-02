@@ -58,7 +58,7 @@ const LandingPage = () => {
               >
                 카페서문
               </Link>
-              에서 <span>운영</span> 중입니다.
+              에서 운영 중입니다.
             </div>
             {/* <div className={styles.newSignup}>
               ❗<span>신규 가입자</span>에게 <span>1만원 포인트</span> 제공❗
