@@ -101,21 +101,21 @@ const SignupPage = () => {
         user_face_img,
         checked,
         regPhoneNumber.test(phone_number),
-        regPassword.test(password),
-        regUserName.test(username),
+        // regPassword.test(password),
+        // regUserName.test(username),
         refPhoneNumber,
-        refPassword,
-        refUserName
+        // refPassword,
+        // refUserName
       ) === false
     ) {
       return;
     }
 
     // password validation with phone number
-    if (password === phone_number.substring(7, 11)) {
-      alert("유출 위험이 있는 비밀번호입니다. 다시 입력해주세요");
-      return;
-    }
+    // if (password === phone_number.substring(7, 11)) {
+    //   alert("유출 위험이 있는 비밀번호입니다. 다시 입력해주세요");
+    //   return;
+    // }
 
     // loading
     setIsLoading(true);
@@ -130,8 +130,8 @@ const SignupPage = () => {
         const formData = new FormData();
         formData.append("user_face_img", mirroredBlob);
         formData.append("phone_number", phone_number);
-        formData.append("password", password);
-        formData.append("username", username);
+        // formData.append("password", password);
+        // formData.append("username", username);
 
         // Sign up user data
         axios
@@ -164,31 +164,31 @@ const SignupPage = () => {
             //   });
           })
           .catch((error) => {
-            if (error.response.data.detail === "Risky Password") {
-              alert("유출 위험이 있는 비밀번호입니다. 다시 입력해주세요");
-            } else {
+            // if (error.response.data.detail === "Risky Password") {
+            //   alert("유출 위험이 있는 비밀번호입니다. 다시 입력해주세요");
+            // } else {
               alert("회원가입에 실패했습니다. 다시 시도해주세요");
-            }
+            // }
             setIsLoading(false);
           });
       });
     };
   };
 
-  // camera permission check & input focus
+  // input focus
   const regPhoneNumber = useMemo(() => /^010[0-9]{8}$/, []);
-  const regPassword = useMemo(() => /^[0-9]{4}$/, []);
-  const regUserName = useMemo(() => /^[가-힣]{2,4}$/, []);
-  useEffect(() => {
-    if (regPhoneNumber.test(phone_number)) {
-      refPassword.current.focus();
-    }
-  }, [phone_number, regPhoneNumber]);
-  useEffect(() => {
-    if (regPassword.test(password)) {
-      refUserName.current.focus();
-    }
-  }, [password, regPassword]);
+  // const regPassword = useMemo(() => /^[0-9]{4}$/, []);
+  // const regUserName = useMemo(() => /^[가-힣]{2,4}$/, []);
+  // useEffect(() => {
+  //   if (regPhoneNumber.test(phone_number)) {
+  //     refPassword.current.focus();
+  //   }
+  // }, [phone_number, regPhoneNumber]);
+  // useEffect(() => {
+  //   if (regPassword.test(password)) {
+  //     refUserName.current.focus();
+  //   }
+  // }, [password, regPassword]);
 
   return (
     <div>
@@ -241,10 +241,10 @@ const SignupPage = () => {
                 ref={refPhoneNumber}
                 maxLength={11}
                 value={phone_number}
-                placeholder="ID로 쓰일 전화번호를 입력해주세요"
+                placeholder="전화번호를 입력해주세요"
                 className={styles.inputBox}
               />
-              <input
+              {/* <input
                 name="password"
                 onChange={onChange}
                 type="password"
@@ -264,7 +264,7 @@ const SignupPage = () => {
                 value={username}
                 placeholder="이름을 입력해주세요 (정산 시 필요)"
                 className={styles.inputBox}
-              />
+              /> */}
               <div className={styles.checkBox}>
                 <input
                   type="checkbox"

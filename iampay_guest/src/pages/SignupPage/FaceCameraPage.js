@@ -97,15 +97,15 @@ const FaceCameraPage = () => {
               <span className={styles.reloadGuide}>새로고침</span> 후{" "}
               <span>재촬영</span>
             </div>
-            <div>
+            {/* <div>
               2. 얼굴을 <span>박스에 고정</span> 후 촬영하기
-            </div>
+            </div> */}
             <div>
-              3. 핸드폰 <span>촬영 높이</span>를 <span>얼굴</span>에 맞추기
+              2. 핸드폰 <span>촬영 높이</span>를 <span>얼굴</span>에 맞추기
             </div>
-            <div>
+            {/* <div>
               4. 사진이 <span>흔들리지 않게</span> 촬영하기
-            </div>
+            </div> */}
           </div>
           <div className={styles.screenBox}>
             <img

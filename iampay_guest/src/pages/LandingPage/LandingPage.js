@@ -26,6 +26,7 @@ const LandingPage = () => {
           // navigator("/mypage", { state: response.data });
           localStorage.removeItem("accessToken");
           navigator("/");
+          setIsLoading(false);
         })
         .catch((error) => {
           console.log(error);
@@ -50,14 +51,14 @@ const LandingPage = () => {
             <div className={styles.serviceGuide}>
               <span>나는</span>
               <span>PAY</span>는 <span>오프라인 얼굴 결제 서비스</span>로,
-              일부 고객들을 대상으로 현재{" "}
+              현재{" "}
               <Link
                 to="https://www.instagram.com/cafeseomoon"
                 className={styles.cafeSeomoonLink}
               >
                 카페서문
               </Link>
-              에서 <span>서비스</span>를 운영 중입니다.
+              에서 <span>운영</span> 중입니다.
             </div>
             {/* <div className={styles.newSignup}>
               ❗<span>신규 가입자</span>에게 <span>1만원 포인트</span> 제공❗
@@ -67,29 +68,24 @@ const LandingPage = () => {
               <span>1만원</span>이 소진되고 나서도, <span>서비스</span>를 계속 이용할 수 있습니다.
             </div> */}
             <div className={styles.contentBox}>
-              <span className={styles.contentTitle}>📌 <span className={styles.redTitle}>1만원 포인트</span> 제공</span>
+              <span className={styles.contentTitle}>📌 <span className={styles.redTitle}>500원 캐시백</span> 혜택</span>
               {/* <div>
                 1. <span>연세대학교</span> 대학생/대학원생 (재휴학)
               </div> */}
               <div>
-                1. <span>조건</span>: (카페서문) <span>주 1회</span> 이상 방문
+                1. 기간: <span>24년 10월까지</span> (연장 가능)
               </div>
               <div>
-                2. <span className={styles.redTitle}>1만원</span>이 소진되고 나서도, <span>서비스</span>를 계속 이용할 수 있습니다.
+                2. 조건: <span>1000원 이상</span> 결제 건
               </div>
             </div>
             <div className={styles.contentBox}>
-              <span className={styles.contentTitle}>📌 결제/정산 방식</span>
+              <span className={styles.contentTitle}>📌 <span className={styles.redTitle}>다음 달 정산</span> 방식</span>
               <div>
-                1. <span>선 주문</span> : 매장 <span>태블릿</span>으로{" "}
-                <span>얼굴결제</span> 진행
+                1. <span>계좌/카드 </span>연동 <span>X</span>
               </div>
               <div>
-                2. <span>후 정산</span> : <span>매달 1일, 16일</span>에{" "}
-                <span>정산</span> 진행
-              </div>
-              <div>
-                (문자 전송될 <span>계좌</span>로 <span>누적 정산금액</span> 이체)
+                2. <span>매달 1일</span>에 <span>정산</span> (전월 분)
               </div>
             </div>
             {/* <div className={styles.contentBox}>
@@ -114,7 +110,7 @@ const LandingPage = () => {
 
           <Button
             buttonLink="/signup"
-            buttonText="포인트 받기"
+            buttonText="바로 이용하기"
             buttonColor="#FF5555"
           />
         </div>
