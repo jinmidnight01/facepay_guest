@@ -68,7 +68,7 @@ const LandingPage = () => {
               <span>1만원</span>이 소진되고 나서도, <span>서비스</span>를 계속 이용할 수 있습니다.
             </div> */}
             <div className={styles.contentBox}>
-              <span className={styles.contentTitle}>📌 <span className={styles.redTitle}>500원 캐시백</span> 혜택</span>
+              <span className={styles.contentTitle}>📌 <span className={styles.redTitle}>500원 할인</span> 혜택</span>
               {/* <div>
                 1. <span>연세대학교</span> 대학생/대학원생 (재휴학)
               </div> */}
