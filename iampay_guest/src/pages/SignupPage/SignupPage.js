@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 const SignupPage = () => {
   // 텍스트 박스 입력값 상태 관리
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const refPhoneNumber = useRef();
   // const refPassword = useRef();
   // const refUserName = useRef();
@@ -61,7 +61,7 @@ const SignupPage = () => {
     // } else {
     //   setIsLoading(false);
     // }
-    setIsLoading(false);
+    // setIsLoading(false);
     if (output.state) {
       setUserFaceImg(output.state.user_face_img);
       setHasPhoto(true);
@@ -105,7 +105,7 @@ const SignupPage = () => {
         regPhoneNumber.test(phone_number),
         // regPassword.test(password),
         // regUserName.test(username),
-        refPhoneNumber,
+        refPhoneNumber
         // refPassword,
         // refUserName
       ) === false
@@ -143,7 +143,9 @@ const SignupPage = () => {
           .then(() => {
             navigate("/");
             setIsLoading(false);
-            alert("지금부터 얼굴결제를 이용하실 수 있습니다. 감사합니다.\n\n[ 500원 할인 혜택 ]\n1. 결제할 때마다 (1000원 이상 건)\n2. 24년 10월까지 (연장 가능)\n\n[ 다음 달 정산 방식 ]\n1. 계좌/카드 연동 X\n2. 매달 1일에 정산 (전월 분)");  
+            alert(
+              "지금부터 얼굴결제를 이용하실 수 있습니다. 감사합니다.\n\n[ 500원 할인 혜택 ]\n1. 결제할 때마다 (1000원 이상 건)\n2. 24년 10월까지 (연장 가능)\n\n[ 다음 달 정산 방식 ]\n1. 계좌/카드 연동 X\n2. 매달 1일에 정산 (전월 분)"
+            );
 
             // // log-in
             // axios
@@ -169,7 +171,7 @@ const SignupPage = () => {
             // if (error.response.data.detail === "Risky Password") {
             //   alert("유출 위험이 있는 비밀번호입니다. 다시 입력해주세요");
             // } else {
-              alert("회원가입에 실패했습니다. 다시 시도해주세요");
+            alert("회원가입에 실패했습니다. 다시 시도해주세요");
             // }
             setIsLoading(false);
           });
@@ -195,7 +197,13 @@ const SignupPage = () => {
     <div>
       <Header logoLink="/" />
       {isLoading ? (
-        <Loading />
+        <div className={styles.loadingBox}>
+          <Loading />
+          <div className={styles.signupLoadingBox}>
+            <div className={styles.signupLoading}>가입 중 ...</div>
+            {/* <div className={styles.signupLoading}>(5초 남음)</div> */}
+          </div>
+        </div>
       ) : (
         <div>
           <div className={styles.main} id="main">

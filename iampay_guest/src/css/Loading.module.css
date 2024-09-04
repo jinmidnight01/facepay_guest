@@ -1,8 +1,7 @@
 .loadingBox {
   display: flex;
   justify-content: center;
-  margin-top: 150px;
-  margin-bottom: 180px;
+  margin-top: 80px;
 }
 
 .loadingBox img {
