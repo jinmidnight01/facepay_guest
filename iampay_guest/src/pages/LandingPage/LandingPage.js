@@ -76,7 +76,7 @@ const LandingPage = () => {
                 1. 기간: <span>24년 10월까지</span> (연장 가능)
               </div>
               <div>
-                2. 조건: <span>1000원 이상</span> 결제 건
+                2. 조건: <span>1000원 이상</span> 결제할 때마다
               </div>
             </div>
             <div className={styles.contentBox}>
