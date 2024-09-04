@@ -73,10 +73,10 @@ const LandingPage = () => {
                 1. <span>연세대학교</span> 대학생/대학원생 (재휴학)
               </div> */}
               <div>
-                1. 기간: <span>24년 10월까지</span> (연장 가능)
+                1. <span>결제할 때마다</span> (1000원 이상 건)
               </div>
               <div>
-                2. 조건: <span>1000원 이상</span> 결제할 때마다
+                2. <span>24년 10월까지</span> (연장 가능)
               </div>
             </div>
             <div className={styles.contentBox}>
