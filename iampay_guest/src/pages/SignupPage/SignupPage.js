@@ -17,12 +17,12 @@ const SignupPage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const refPhoneNumber = useRef();
-  const refPassword = useRef();
-  const refUserName = useRef();
+  // const refPassword = useRef();
+  // const refUserName = useRef();
   const [inputs, setInputs] = useState({
     phone_number: "",
-    password: "",
-    username: "",
+    // password: "",
+    // username: "",
   });
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -31,7 +31,7 @@ const SignupPage = () => {
       [name]: value,
     });
   };
-  const { phone_number, password, username } = inputs;
+  const { phone_number } = inputs;
   const [checked, setChecked] = useState(false);
   const handleCheckboxChange = (event) => {
     setChecked(event.target.checked);
@@ -42,25 +42,26 @@ const SignupPage = () => {
   const output = useLocation();
   const [hasPhoto, setHasPhoto] = useState(false);
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      axios
-        .get(`${hostURL}/api/users`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          navigate("/mypage", { state: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-          localStorage.removeItem("accessToken");
-          navigate("/");
-        });
-    } else {
-      setIsLoading(false);
-    }
+    // const token = localStorage.getItem("accessToken");
+    // if (token) {
+    //   axios
+    //     .get(`${hostURL}/api/users`, {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     })
+    //     .then((response) => {
+    //       navigate("/mypage", { state: response.data });
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //       localStorage.removeItem("accessToken");
+    //       navigate("/");
+    //     });
+    // } else {
+    //   setIsLoading(false);
+    // }
+    setIsLoading(false);
     if (output.state) {
       setUserFaceImg(output.state.user_face_img);
       setHasPhoto(true);
@@ -91,6 +92,7 @@ const SignupPage = () => {
   // };
 
   // REST API: post user data
+  const regPhoneNumber = useMemo(() => /^010[0-9]{8}$/, []);
   const handleSubmit = async (e) => {
     // prevent page reset
     e.preventDefault();
@@ -176,7 +178,6 @@ const SignupPage = () => {
   };
 
   // input focus
-  const regPhoneNumber = useMemo(() => /^010[0-9]{8}$/, []);
   // const regPassword = useMemo(() => /^[0-9]{4}$/, []);
   // const regUserName = useMemo(() => /^[가-힣]{2,4}$/, []);
   // useEffect(() => {

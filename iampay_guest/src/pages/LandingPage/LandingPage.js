@@ -50,8 +50,7 @@ const LandingPage = () => {
           <div className={styles.serviceGuideBox}>
             <div className={styles.serviceGuide}>
               <span>나는</span>
-              <span>PAY</span>는 <span>오프라인 얼굴 결제 서비스</span>로,
-              현재{" "}
+              <span>PAY</span>는 <span>오프라인 얼굴 결제 서비스</span>로, 현재{" "}
               <Link
                 to="https://www.instagram.com/cafeseomoon"
                 className={styles.cafeSeomoonLink}
@@ -68,7 +67,9 @@ const LandingPage = () => {
               <span>1만원</span>이 소진되고 나서도, <span>서비스</span>를 계속 이용할 수 있습니다.
             </div> */}
             <div className={styles.contentBox}>
-              <span className={styles.contentTitle}>📌 <span className={styles.redTitle}>500원 할인</span> 혜택</span>
+              <span className={styles.contentTitle}>
+                📌 <span className={styles.redTitle}>500원 할인</span> 혜택
+              </span>
               {/* <div>
                 1. <span>연세대학교</span> 대학생/대학원생 (재휴학)
               </div> */}
@@ -80,9 +81,11 @@ const LandingPage = () => {
               </div>
             </div>
             <div className={styles.contentBox}>
-              <span className={styles.contentTitle}>📌 <span className={styles.redTitle}>다음 달 정산</span> 방식</span>
+              <span className={styles.contentTitle}>
+                📌 <span className={styles.redTitle}>다음 달 정산</span> 방식
+              </span>
               <div>
-                1. <span>계좌/카드 </span>연동 <span>X</span>
+                1. <span>계좌/카드</span> 따로 <span>연동하지 않음</span>
               </div>
               <div>
                 2. <span>매달 1일</span>에 <span>계좌이체</span> (전월 분)
