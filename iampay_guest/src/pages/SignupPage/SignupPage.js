@@ -42,7 +42,6 @@ const SignupPage = () => {
   const output = useLocation();
   const [hasPhoto, setHasPhoto] = useState(false);
   useEffect(() => {
-    alert("지금부터 얼굴결제를 이용하실 수 있습니다. 감사합니다.\n\n[ 500원 할인 혜택 ]\n1. 결제할 때마다 (1000원 이상 건)\n2. 24년 10월까지 (연장 가능)\n\n[ 다음 달 정산 방식 ]\n1. 계좌/카드 연동 X\n2. 매달 1일에 정산 (전월 분)");  
     const token = localStorage.getItem("accessToken");
     if (token) {
       axios
@@ -142,7 +141,7 @@ const SignupPage = () => {
           .then(() => {
             navigate("/");
             setIsLoading(false);
-            alert("지금부터 얼굴결제를 이용하실 수 있습니다.\n\n감사합니다.");  
+            alert("지금부터 얼굴결제를 이용하실 수 있습니다. 감사합니다.\n\n[ 500원 할인 혜택 ]\n1. 결제할 때마다 (1000원 이상 건)\n2. 24년 10월까지 (연장 가능)\n\n[ 다음 달 정산 방식 ]\n1. 계좌/카드 연동 X\n2. 매달 1일에 정산 (전월 분)");  
 
             // // log-in
             // axios
