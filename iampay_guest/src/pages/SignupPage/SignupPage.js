@@ -141,7 +141,7 @@ const SignupPage = () => {
           .then(() => {
             navigate("/");
             setIsLoading(false);
-            alert("지금부터 얼굴결제를 이용하실 수 있습니다.\n주 1회 이상 미이용 시, 1만원 포인트가 회수될 수 있습니다.");
+            alert("지금부터 얼굴결제를 이용하실 수 있습니다.\n감사합니다.");  
 
             // // log-in
             // axios
