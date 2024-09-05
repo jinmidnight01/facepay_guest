@@ -11,6 +11,7 @@ import MirrorImage from "../../components/MirrorImage";
 import InputValidation from "../../components/InputValidation";
 import { FaCamera } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import emailjs from '@emailjs/browser';
 
 const SignupPage = () => {
   // 텍스트 박스 입력값 상태 관리
@@ -144,8 +145,27 @@ const SignupPage = () => {
             navigate("/");
             setIsLoading(false);
             alert(
-              "지금부터 얼굴결제를 이용하실 수 있습니다. 감사합니다.\n\n[ 500원 할인 혜택 ]\n1. 결제할 때마다 (1000원 이상 건)\n2. 24년 10월까지 (연장 가능)\n\n[ 다음 달 정산 방식 ]\n1. 계좌/카드 연동 X\n2. 매달 1일에 정산 (전월 분)"
+              "지금부터 얼굴결제를 이용하실 수 있습니다. 감사합니다.\n\n[ 500원 할인 혜택 ]\n1. 결제할 때마다 (1000원 이상 건)\n2. 24년 10월까지 (연장 가능)\n\n[ 다음 달 정산 방식 ]\n1. 계좌/카드 따로 연동하지 않음\n2. 매달 1일에 계좌이체 (전월 분)"
             );
+
+            // 이메일 전송 코드
+            emailjs
+              .send(
+                "service_i16qvnw", // emailjs 서비스 ID
+                "template_xr2m2dn", // emailjs 템플릿 ID
+                {
+                  phone_number: phone_number, // 메일로 보낼 정보
+                },
+                "SXuCeO5u6o08tXRIo" // emailjs 공용 API 키
+              )
+              .then(
+                () => {
+
+                },
+                (error) => {
+                  console.error("메일 전송 실패...", error);
+                }
+              );
 
             // // log-in
             // axios
