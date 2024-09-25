@@ -10,7 +10,7 @@ const Header = (props) => {
       <div className={styles.header}>
         <div className={styles.headerLeft}>
           <Link to={logoLink} className={styles.headerLink}>
-            <span className={styles.payColor}>나는</span>PAY
+            <span className={styles.payColor}>FACE</span>PAY
           </Link>
         </div>
         <hr />

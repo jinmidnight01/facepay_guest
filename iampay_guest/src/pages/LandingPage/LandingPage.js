@@ -49,7 +49,7 @@ const LandingPage = () => {
 
           <div className={styles.serviceGuideBox}>
             <div className={styles.serviceGuide}>
-              <span>나는</span>
+              <span>FACE</span>
               <span>PAY</span>는 <span>오프라인 얼굴 결제 서비스</span>로, 현재{" "}
               <Link
                 to="https://www.instagram.com/cafeseomoon"
@@ -113,7 +113,7 @@ const LandingPage = () => {
 
           <Button
             buttonLink="/signup"
-            buttonText="바로 이용하기"
+            buttonText="바로 등록하기"
             buttonColor="#FF5555"
           />
         </div>
