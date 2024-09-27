@@ -38,7 +38,7 @@ const HowToMoneyPage = () => {
       {/* 첫 번째 가이드 */}
       <div className={styles.firstGuideBox}>
         <div className={styles.guide}>
-          <span>계좌/카드</span> 연동 준비 중
+          <span>계좌/카드</span> 추후 연동 예정
         </div>
       </div>
 
