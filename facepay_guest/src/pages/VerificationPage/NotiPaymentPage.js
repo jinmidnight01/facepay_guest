@@ -38,10 +38,10 @@ const NotiPaymentPage = () => {
       {/* 첫 번째 가이드 */}
       <div className={styles.firstGuideBox}>
         <div className={styles.guide}>
-          <span>주문</span> 내역과 <span>정산 예정</span> 금액
+          <span>문자</span>를 통해
         </div>
         <div className={styles.guide}>
-          모두 <span>문자 전송</span> 예정
+          <span>결제</span> 내역 발송 예정
         </div>
       </div>
 

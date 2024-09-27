@@ -53,7 +53,7 @@ const HowToOrderPage = () => {
         className={`${styles.guideBox} ${fadeInStep >= 2 ? styles.fadeIn : ""}`}
       >
         <div className={styles.guide}>
-          <span>얼굴</span>로 <span>결제</span>하겠다고 말하기
+          직원에게 <span>얼굴 결제</span> 요청하기
         </div>
       </div>
       <div
