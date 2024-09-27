@@ -33,7 +33,7 @@ const ServicePlacePage = () => {
   return (
     <div>
       <Header logoLink="/" />
-      <div className={styles.modalTitle}>시범 서비스 매장</div>
+      <div className={styles.modalTitle}>시범 서비스 매장 목록</div>
 
       {/* 첫 번째 가이드 */}
       <div className={styles.firstGuideBox}>
