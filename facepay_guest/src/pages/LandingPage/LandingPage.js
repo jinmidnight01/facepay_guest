@@ -62,7 +62,12 @@ const LandingPage = () => {
     <div>
       <Header logoLink="/" />
       {isLoading ? (
-        <Loading />
+        <div className={styles.loadingBox}>
+          <Loading />
+          <div className={styles.signupLoadingBox}>
+            <div className={styles.signupLoading}>로딩 중 ...</div>
+          </div>
+        </div>
       ) : (
         <div>
           {/* <div className={styles.homeTitle}>서비스 소개</div>
@@ -154,20 +159,18 @@ const LandingPage = () => {
               오프라인 얼굴 결제 서비스
             </div>
             <div
-            className={`${styles.buttonWrapper} ${
-              showButton ? styles.fadeInUp : ""
-            }`}
-          >
-            {showButton && (
-              <Button
-                buttonLink="/selfi"
-                buttonText="등록하기"
-                buttonColor="#FF5555"
-              />
-            )}
-          </div>
-
-
+              className={`${styles.buttonWrapper} ${
+                showButton ? styles.fadeInUp : ""
+              }`}
+            >
+              {showButton && (
+                <Button
+                  buttonLink="/selfi"
+                  buttonText="등록하기"
+                  buttonColor="#FF5555"
+                />
+              )}
+            </div>
           </div>
 
           <div className={styles.footerBox}>
