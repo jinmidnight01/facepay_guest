@@ -55,7 +55,12 @@ const EventPage = () => {
     <div>
       <Header logoLink="/" />
       {isLoading ? (
-        <Loading />
+        <div className={styles.loadingBox}>
+          <Loading />
+          <div className={styles.signupLoadingBox}>
+            <div className={styles.signupLoading}>로딩 중 ...</div>
+          </div>
+        </div>
       ) : (
         <div>
           <div className={styles.modalTitle}>할인 이벤트</div>

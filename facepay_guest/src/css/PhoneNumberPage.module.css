@@ -10,6 +10,17 @@
   margin-bottom: 120px;
 }
 
+.signupLoadingBox {
+  margin-top: 5px;
+}
+
+.signupLoading {
+  text-align: center;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 30px;
+}
+
 .phoneInputContainer {
   display: flex;
   justify-content: center;
