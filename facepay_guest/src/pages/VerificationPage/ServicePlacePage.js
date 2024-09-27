@@ -28,7 +28,7 @@ const ServicePlacePage = () => {
     return () => {
       timeouts.forEach(clearTimeout);
     };
-  }, []);
+  }, [navigate, output]);
 
   return (
     <div>

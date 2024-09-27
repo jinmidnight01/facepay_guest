@@ -32,7 +32,7 @@ const EventPage = () => {
     return () => {
       timeouts.forEach(clearTimeout);
     };
-  }, []);
+  }, [navigate, output]);
 
   const handleClick = () => {
     setIsLoading(true);
