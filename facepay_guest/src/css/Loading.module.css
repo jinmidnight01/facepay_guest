@@ -1,0 +1,9 @@
+.loadingBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+}
+
+.loadingBox img {
+  width: 100px;
+}

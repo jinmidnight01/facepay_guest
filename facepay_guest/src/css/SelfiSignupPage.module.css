@@ -1,0 +1,85 @@
+.modal {
+  flex-direction: column;
+}
+
+.modalTitle {
+  margin: 40px 0 10px 0px;
+  font-size: 20px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+.warningTitle {
+  font-size: 15px;
+  font-family: "Noto Sans KR", sans-serif;
+  text-align: center;
+  margin-bottom: 13px;
+  color: grey;
+  font-weight: 500;
+}
+
+.reloadGuide {
+  color: #ff5555;
+}
+
+.screenBox {
+  position: relative;
+  width: 300px;
+  margin: 0 auto 35px auto;
+}
+
+.faceGuide {
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  z-index: 100;
+  top: 35px;
+  left: 35px;
+}
+
+.screen {
+  display: flex;
+  justify-content: center;
+}
+
+.boundingBox {
+  width: relative;
+  height: relative;
+  position: relative;
+}
+
+.webcamBox {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 40px;
+}
+
+.webcam {
+  width: 300px !important;
+  height: 300px !important;
+  object-fit: cover;
+}
+
+.buttonBox {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  width: 280px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #ff5555;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.button:active {
+  opacity: 0.8;
+}

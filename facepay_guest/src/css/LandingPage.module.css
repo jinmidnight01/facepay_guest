@@ -1,0 +1,160 @@
+.homeTitle {
+  font-size: 23px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.serviceGuideBox {
+  background-color: #ffffff;
+  overflow: auto;
+  border-radius: 10px;
+  width: 275px;
+  margin: 0 auto 10px auto;
+  padding: 10px 15px;
+  line-height: 25px;
+}
+
+.serviceGuideBox span {
+  font-weight: bold;
+}
+
+.serviceGuide span:first-child {
+  color: #ff5555;
+}
+
+.cafeSeomoonLink {
+  color: #999999;
+  text-decoration: underline;
+}
+
+.cafeSeomoonLink:active {
+  opacity: 0.8;
+}
+
+.newSignup {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.newSignup span:nth-child(2) {
+  color: #ff5555;
+  font-size: 17px;
+}
+
+.contentBox {
+  margin-top: 25px;
+}
+
+.contentTitle {
+  font-size: 17px;
+}
+
+.redTitle {
+  color: #ff5555;
+}
+
+.loginLinkBox {
+  display: flex;
+  justify-content: center;
+}
+
+.loginLink {
+  font-size: 13px;
+  text-align: center;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  color: #999999;
+  text-decoration: none;
+}
+
+.loginLink:active {
+  opacity: 0.8;
+}
+
+.textBox {
+  margin: 30px auto 10px auto;
+  width: 300px;
+}
+
+.textNoCard {
+  font-size: 37px;
+  text-align: center;
+  font-weight: bolder;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.textFacePayment {
+  font-size: 37px;
+  text-align: center;
+  font-weight: bolder;
+  font-family: "Noto Sans KR", sans-serif;
+  color: #ff5555;
+}
+
+.textNoCard,
+.textFacePayment,
+.serviceDescription {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.fadeIn {
+  opacity: 1;
+}
+
+.buttonWrapper {
+  opacity: 0;
+  transform: translateY(15px); /* 초기에는 아래에 위치 */
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.fadeInUp {
+  opacity: 1;
+  transform: translateY(0); /* 위로 올라오면서 스르륵 나타남 */
+}
+
+.serviceDescription {
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.footerBox {
+  display: flex;
+  justify-content: center;
+}
+
+.footerImgBox {
+  width: 450px;
+}
+
+.facepayImg {
+  width: 100%;
+  height: auto; /* 비율을 유지하면서 크기 조정 */
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+  max-width: 450px;
+}
+
+@media (min-height: 740px) {
+  .textNoCard {
+    font-size: 48px;
+  }
+
+  .textFacePayment {
+    font-size: 48px;
+  }
+
+  .serviceDescription {
+    font-size: 18px;
+    margin: 20px 0;
+  }
+
+  .textBox {
+    margin-top: 100px;
+  }
+}

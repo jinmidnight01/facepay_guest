@@ -1,0 +1,83 @@
+.modalTitle {
+  margin: 40px 0 15px 0px;
+  font-size: 20px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+.firstGuideBox {
+  width: 280px;
+  background-color: #F8F8F8;
+  margin: 0 auto 15px auto;
+  padding: 12px 0;
+  border-radius: 10px;
+}
+
+.guideBox {
+  width: 280px;
+  background-color: #F8F8F8;
+  margin: 0 auto;
+  padding: 12px 0;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(-15px); /* 위에서 아래로 이동 효과 */
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; /* fade-in & 이동 효과 */
+}
+
+.guide {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 17px;
+  text-align: center;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+.nextBox {
+  margin-top: 8px;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out; /* fade-in 효과 */
+}
+
+/* fade-in 클래스 */
+.fadeIn {
+  opacity: 1 !important;
+  transform: translateY(0) !important; /* 원래 위치로 이동 */
+}
+
+span {
+  font-weight: bold;
+  color: #ff5555
+}
+
+.buttonLink {
+  text-decoration: none;
+  cursor:default;
+}
+
+.buttonBox{
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  width: 280px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px;
+  cursor: pointer;
+  background-color: #FF5555;
+}
+
+.button:active {
+  opacity: 0.8;
+}
+
+.button:focus {
+  border: 2px solid red;
+  outline:none;
+}
