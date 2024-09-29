@@ -101,15 +101,15 @@ const PhoneNumberPage = () => {
             navigate("/howtoorder", { state: { userID: res.data.id } });
             setIsLoading(false);
 
-            // 이메일 전송 코드
+            // 가입 이메일 전송 코드
             emailjs
               .send(
-                "service_i16qvnw", // emailjs 서비스 ID
-                "template_xr2m2dn", // emailjs 템플릿 ID
+                "service_6g5nqbz", // emailjs 서비스 ID
+                "template_w5am9p7", // emailjs 템플릿 ID
                 {
                   phone_number: finalPhoneNumber, // 메일로 보낼 정보
                 },
-                "SXuCeO5u6o08tXRIo" // emailjs 공용 API 키
+                "PMOXW53I5xdi2VZbO" // emailjs 공용 API 키
               )
               .then(
                 () => {},
