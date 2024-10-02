@@ -25,7 +25,7 @@ const EventPage = () => {
     for (let i = 1; i <= 2; i++) {
       const timeout = setTimeout(() => {
         setFadeInStep(i);
-      }, i * 800); // i * 1000ms로 순차적으로 나타남
+      }, i * 500); // i * 1000ms로 순차적으로 나타남
       timeouts.push(timeout);
     }
 

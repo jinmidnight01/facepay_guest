@@ -21,7 +21,7 @@ const NotiPaymentPage = () => {
     for (let i = 1; i <= 1; i++) {
       const timeout = setTimeout(() => {
         setFadeInStep(i);
-      }, i * 800); // i * 1000ms로 순차적으로 나타남
+      }, i * 500); // i * 1000ms로 순차적으로 나타남
       timeouts.push(timeout);
     }
 
@@ -41,7 +41,7 @@ const NotiPaymentPage = () => {
           <span>문자</span>를 통해
         </div>
         <div className={styles.guide}>
-          <span>결제</span> 내역 발송 예정
+          <span>결제/할인</span> 내역 발송 예정
         </div>
       </div>
 

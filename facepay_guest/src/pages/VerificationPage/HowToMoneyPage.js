@@ -21,7 +21,7 @@ const HowToMoneyPage = () => {
     for (let i = 1; i <= 3; i++) {
       const timeout = setTimeout(() => {
         setFadeInStep(i);
-      }, i * 800); // i * 1000ms로 순차적으로 나타남
+      }, i * 500); // i * 1000ms로 순차적으로 나타남
       timeouts.push(timeout);
     }
 
@@ -37,6 +37,10 @@ const HowToMoneyPage = () => {
 
       {/* 첫 번째 가이드 */}
       <div className={styles.firstGuideBox}>
+        <div className={styles.guide}>
+          <span>시범 서비스</span> 단계이므로
+        </div>
+
         <div className={styles.guide}>
           <span>계좌/카드</span>는 추후 연동 예정
         </div>
