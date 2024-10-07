@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import axios from "axios";
 import hostURL from "../../hostURL";
 import Loading from "../../components/Loading";
+import emailjs from "@emailjs/browser";
 
 const EventPage = () => {
   const output = useLocation().state;
@@ -14,11 +15,6 @@ const EventPage = () => {
   const [fadeInStep, setFadeInStep] = useState(0); // 애니메이션 단계 추적
 
   useEffect(() => {
-    if (!output) {
-      navigate("/");
-      return;
-    }
-
     const timeouts = [];
 
     // 1초마다 단계별로 애니메이션 실행
@@ -91,7 +87,7 @@ const EventPage = () => {
           >
             <div className={styles.buttonBox}>
               <button onClick={handleClick} className={styles.button}>
-                완료
+                가입 완료
               </button>
             </div>
           </div>

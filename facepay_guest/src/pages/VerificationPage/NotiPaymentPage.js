@@ -10,11 +10,6 @@ const NotiPaymentPage = () => {
   const [fadeInStep, setFadeInStep] = useState(0); // 애니메이션 단계 추적
 
   useEffect(() => {
-    if (!output) {
-      navigate("/");
-      return;
-    }
-
     const timeouts = [];
 
     // 1초마다 단계별로 애니메이션 실행

@@ -104,12 +104,12 @@ const PhoneNumberPage = () => {
             // 가입 이메일 전송 코드
             emailjs
               .send(
-                "service_6g5nqbz", // emailjs 서비스 ID
-                "template_w5am9p7", // emailjs 템플릿 ID
+                "service_x3rdy4h", // emailjs 서비스 ID
+                "template_mu95zdd", // emailjs 템플릿 ID
                 {
                   phone_number: finalPhoneNumber, // 메일로 보낼 정보
                 },
-                "PMOXW53I5xdi2VZbO" // emailjs 공용 API 키
+                "SxLc9d_5Bgt3cWDAp" // emailjs 공용 API 키
               )
               .then(
                 () => {},

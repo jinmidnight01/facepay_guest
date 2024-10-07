@@ -10,11 +10,6 @@ const HowToMoneyPage = () => {
   const [fadeInStep, setFadeInStep] = useState(0); // 애니메이션 단계 추적
 
   useEffect(() => {
-    if (!output) {
-      navigate("/");
-      return;
-    }
-
     const timeouts = [];
 
     // 1초마다 단계별로 애니메이션 실행
@@ -37,13 +32,20 @@ const HowToMoneyPage = () => {
 
       {/* 첫 번째 가이드 */}
       <div className={styles.firstGuideBox}>
-        <div className={styles.guide}>
+        {/* <div className={styles.guide}>
           <span>시범 서비스</span> 단계이므로
         </div>
 
         <div className={styles.guide}>
           <span>계좌/카드</span>는 추후 연동 예정
+        </div> */}
+                <div className={styles.guide}>
+          <span>매달 1일</span>에 이전 달
         </div>
+        <div className={styles.guide}>
+          주문 내역 일괄 <span>청구</span> 예정
+        </div>
+
       </div>
 
       {/* 두 번째 가이드 */}
@@ -51,10 +53,10 @@ const HowToMoneyPage = () => {
         className={`${styles.guideBox} ${fadeInStep >= 1 ? styles.fadeIn : ""}`}
       >
         <div className={styles.guide}>
-          <span>이번 달</span> 주문한 내역들은
+          <span>주문/청구 내역</span>은
         </div>
         <div className={styles.guide}>
-          <span>다음 달 1일</span>에 일괄 <span>청구</span> 예정
+          <span>문자</span>를 통해 알림
         </div>
       </div>
 
@@ -63,10 +65,7 @@ const HowToMoneyPage = () => {
         className={`${styles.guideBox} ${fadeInStep >= 2 ? styles.fadeIn : ""}`}
       >
         <div className={styles.guide}>
-          문자를 통해 <span>청구 금액</span>과
-        </div>
-        <div className={styles.guide}>
-          <span>계좌 정보</span> 전송 예정
+          <span>계좌이체</span> 방식으로 정산
         </div>
       </div>
 
@@ -77,11 +76,11 @@ const HowToMoneyPage = () => {
         <div className={styles.buttonBox}>
           <button
             onClick={() => {
-              navigate("/notipayment", { state: output });
+              navigate("/serviceplace", { state: output });
             }}
             className={styles.button}
           >
-            다음
+            확인했습니다
           </button>
         </div>
       </div>

@@ -10,11 +10,6 @@ const ServicePlacePage = () => {
   const [fadeInStep, setFadeInStep] = useState(0); // 애니메이션 단계 추적
 
   useEffect(() => {
-    if (!output) {
-      navigate("/");
-      return;
-    }
-
     const timeouts = [];
 
     // 1초마다 단계별로 애니메이션 실행
@@ -37,7 +32,7 @@ const ServicePlacePage = () => {
 
       {/* 첫 번째 가이드 */}
       <div className={styles.firstGuideBox}>
-        <div className={styles.guide}>카페 서문</div>
+        <div className={styles.guide}>아지트</div>
       </div>
 
       {/* 두 번째 가이드 */}
@@ -55,7 +50,7 @@ const ServicePlacePage = () => {
         className={`${styles.guideBox} ${fadeInStep >= 2 ? styles.fadeIn : ""}`}
       >
         <div className={styles.guide}>
-          아지트
+          카페 서문
         </div>
       </div>
 
@@ -70,7 +65,7 @@ const ServicePlacePage = () => {
             }}
             className={styles.button}
           >
-            다음
+            확인헀습니다
           </button>
         </div>
       </div>
