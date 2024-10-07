@@ -43,7 +43,7 @@ const HowToMoneyPage = () => {
           <span>매달 1일</span>에 이전 달
         </div>
         <div className={styles.guide}>
-          주문 내역 일괄 <span>청구</span> 예정
+          주문 내역 일괄 <span>청구</span>
         </div>
 
       </div>
