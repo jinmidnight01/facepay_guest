@@ -5,7 +5,6 @@ import Header from "../../components/Header";
 import axios from "axios";
 import hostURL from "../../hostURL";
 import Loading from "../../components/Loading";
-import emailjs from "@emailjs/browser";
 
 const EventPage = () => {
   const output = useLocation().state;
