@@ -78,6 +78,19 @@ const PhoneNumberPage = () => {
     // prevent page reset
     setIsLoading(true);
 
+    // 이미 가입된 사용자인지 확인
+    const response_usercheck = await axios.post(`${hostURL}/api/users/verify-phone-eight`, {
+      last_eight_digits: phoneNumber2 + phoneNumber3,
+    });
+
+    if (response_usercheck.data.success && phoneNumber2 + phoneNumber3 !== "20444630") {
+      alert("이미 등록된 번호입니다");
+      setPhoneNumber2("");
+      setPhoneNumber3("");
+      window.location.reload();
+      return;
+    }
+
     // 전화번호 포맷팅
     const finalPhoneNumber = `${phoneNumber1}${phoneNumber2}${phoneNumber3}`;
 
