@@ -117,12 +117,12 @@ const PhoneNumberPage = () => {
             // 가입 이메일 전송 코드
             emailjs
               .send(
-                "service_x3rdy4h", // emailjs 서비스 ID
-                "template_mu95zdd", // emailjs 템플릿 ID
+                "service_i16qvnw", // emailjs 서비스 ID
+                "template_mt5pw4e", // emailjs 템플릿 ID
                 {
                   phone_number: finalPhoneNumber, // 메일로 보낼 정보
                 },
-                "SxLc9d_5Bgt3cWDAp" // emailjs 공용 API 키
+                "SXuCeO5u6o08tXRIo" // emailjs 공용 API 키
               )
               .then(
                 () => {},
