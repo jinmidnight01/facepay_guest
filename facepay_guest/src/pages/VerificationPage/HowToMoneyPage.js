@@ -67,6 +67,9 @@ const HowToMoneyPage = () => {
         <div className={styles.guide}>
           <span>계좌이체</span> 방식으로 정산
         </div>
+        <div className={styles.guide}>
+          (계좌번호 고지 예정)
+        </div>
       </div>
 
       {/* 마지막 버튼 */}
