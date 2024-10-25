@@ -74,7 +74,7 @@ const EventPage = () => {
             }`}
           >
             <div className={styles.guide}>
-              <span>10월</span>까지 진행 (<span>추후 연장</span> 가능)
+              24년 <span>11월 15일</span>까지 진행
             </div>
           </div>
 
