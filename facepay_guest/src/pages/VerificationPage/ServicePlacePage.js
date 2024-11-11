@@ -46,17 +46,17 @@ const ServicePlacePage = () => {
       </div>
 
       {/* 세 번째 가이드 */}
-      <div
+      {/* <div
         className={`${styles.guideBox} ${fadeInStep >= 2 ? styles.fadeIn : ""}`}
       >
         <div className={styles.guide}>
           카페 서문
         </div>
-      </div>
+      </div> */}
 
       {/* 마지막 버튼 */}
       <div
-        className={`${styles.nextBox} ${fadeInStep >= 3 ? styles.fadeIn : ""}`}
+        className={`${styles.nextBox} ${fadeInStep >= 2 ? styles.fadeIn : ""}`}
       >
         <div className={styles.buttonBox}>
           <button
